@@ -7,7 +7,7 @@ services:
       context: ./order-service
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "8084:8080"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://order-postgres:5432/ordersdb
       SPRING_DATASOURCE_USERNAME: postgres
@@ -67,7 +67,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: postgres
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
     ports:
-      - "8082:8080"
+      - "8081:8080"
 
   payment-postgres:
     image: postgres:15.4-alpine
@@ -89,11 +89,11 @@ services:
       - product-mongo
     environment:
       SPRING_PROFILES_ACTIVE: dev
-      SPRING_DATA_MONGODB_URI: mongodb://product-mongo:27017/productdb
+      SPRING_DATA_MONGODB_URI: mongodb://root:root@product-mongo:27017/productdb?authSource=admin
       SPRING_DATA_MONGODB_USERNAME: root
       SPRING_DATA_MONGODB_PASSWORD: root
     ports:
-      - "8083:8080"
+      - "8080:8080"
 
   product-mongo:
     image: mongo:4.0

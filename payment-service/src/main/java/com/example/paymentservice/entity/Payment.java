@@ -1,20 +1,22 @@
 package com.example.paymentservice.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Data // Lombok para generar getters, setters, etc.
+@Table(name = "payments")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Payment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Generación automática del ID
+    @GeneratedValue(strategy = GenerationType.UUID) // Generación automática del ID
     private UUID id;
 
     @Column(nullable = false)
@@ -33,6 +35,7 @@ public class Payment {
     private String paymentMethod; // Método de pago, ejemplo: tarjeta de crédito, PayPal, etc.
 
     @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime paymentDate; // Fecha y hora del pago
 
     @Column(nullable = false)
