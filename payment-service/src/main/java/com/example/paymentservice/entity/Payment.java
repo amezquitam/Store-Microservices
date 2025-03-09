@@ -34,9 +34,8 @@ public class Payment {
     @Column(nullable = false)
     private String paymentMethod; // Método de pago, ejemplo: tarjeta de crédito, PayPal, etc.
 
-    @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime paymentDate; // Fecha y hora del pago
+    private LocalDateTime paymentDate = LocalDateTime.now(); // Fecha y hora del pago
 
     @Column(nullable = false)
     private String customerId; // ID del cliente asociado al pago
