@@ -42,13 +42,11 @@ public class PaymentServiceImpl implements PaymentService {
         return paymentRepository.findById(id)
                 .map(existingPayment -> {
                     // Actualización de los campos del pago
-                    existingPayment.setTransactionId(updatedPayment.getTransactionId());
                     existingPayment.setAmount(updatedPayment.getAmount());
                     existingPayment.setCurrency(updatedPayment.getCurrency());
                     existingPayment.setStatus(updatedPayment.getStatus());
                     existingPayment.setPaymentMethod(updatedPayment.getPaymentMethod());
                     existingPayment.setPaymentDate(updatedPayment.getPaymentDate());
-                    existingPayment.setCustomerId(updatedPayment.getCustomerId());
 
                     // Guardar el pago actualizado
                     return paymentRepository.save(existingPayment);
