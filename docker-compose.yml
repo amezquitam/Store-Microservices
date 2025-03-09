@@ -27,6 +27,32 @@ services:
     volumes:
       - order_data:/var/lib/postgresql/data
 
+  inventory-service:
+    container_name: inventory-service
+    build:
+      context: ./inventory-service
+      dockerfile: Dockerfile
+    depends_on:
+      - product-service
+      - inventory-postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://inventory-postgres:5432/inventorydb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - "8081:8080"
+
+  inventory-postgres:
+    image: postgres:15.4-alpine
+    container_name: inventory-postgres
+    environment:
+      POSTGRES_DB: inventorydb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports: [ ]
+    volumes:
+      - inventory_data:/var/lib/postgresql/data
 
   payment-service:
     container_name: payment-service
@@ -41,7 +67,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: postgres
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
     ports:
-      - "8180:8080"
+      - "8082:8080"
 
   payment-postgres:
     image: postgres:15.4-alpine
@@ -67,7 +93,7 @@ services:
       SPRING_DATA_MONGODB_USERNAME: root
       SPRING_DATA_MONGODB_PASSWORD: root
     ports:
-      - "8280:8080"
+      - "8083:8080"
 
   product-mongo:
     image: mongo:4.0
@@ -83,3 +109,4 @@ volumes:
   order_data:
   payment_data:
   mongo_data:
+  inventory_data:

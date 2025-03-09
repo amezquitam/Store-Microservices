@@ -6,8 +6,8 @@ import lombok.Data;
 
 import java.util.UUID;
 
-@Data // Lombok para generar getters, setters, etc.
-@Document(collection = "products") // Define que esta clase corresponde a la colección 'products' en MongoDB
+@Data
+@Document(collection = "products")
 public class Product {
 
     @Id
