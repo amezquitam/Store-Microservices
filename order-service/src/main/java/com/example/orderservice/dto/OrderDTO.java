@@ -2,8 +2,6 @@ package com.example.orderservice.dto;
 
 import lombok.Builder;
 import lombok.With;
-
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
