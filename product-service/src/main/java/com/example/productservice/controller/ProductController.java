@@ -47,7 +47,7 @@ public class ProductController {
      */
     @GetMapping
     public Flux<Product> getAllProducts() {
-        return Flux.defer(() -> Flux.fromIterable(productService.getAllProducts()));
+        return Flux.fromIterable(productService.getAllProducts());
     }
 
     /**

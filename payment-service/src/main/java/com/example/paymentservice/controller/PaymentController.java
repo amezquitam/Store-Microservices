@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/payments")
+@RequestMapping("api/payments")
 public class PaymentController {
 
     private final PaymentService paymentService; // Servicio no reactivo
@@ -36,7 +36,7 @@ public class PaymentController {
     @GetMapping
     public Flux<Payment> getAllPayments() {
         // Convertimos la lista a Flux
-        return Flux.defer(() -> Flux.fromIterable(paymentService.getAllPayments()));
+        return Flux.fromIterable(paymentService.getAllPayments());
     }
 
     @PutMapping("/{id}")
