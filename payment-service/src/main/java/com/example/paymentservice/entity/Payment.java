@@ -20,9 +20,6 @@ public class Payment {
     private UUID id;
 
     @Column(nullable = false)
-    private String transactionId; // Identificador único para la transacción
-
-    @Column(nullable = false)
     private Double amount; // Monto de dinero del pago
 
     @Column(nullable = false)
@@ -36,7 +33,4 @@ public class Payment {
 
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime paymentDate = LocalDateTime.now(); // Fecha y hora del pago
-
-    @Column(nullable = false)
-    private String customerId; // ID del cliente asociado al pago
 }
