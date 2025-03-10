@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea7b7b80-917c-441f-89b3-22374c1534f0" name="Changes" comment="Bug fix">
-      <change afterPath="$PROJECT_DIR$/product-service/src/test/java/com/example/productservice/AbstractDataMongoTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/test/java/com/example/productservice/repository/ProductRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="ea7b7b80-917c-441f-89b3-22374c1534f0" name="Changes" comment="MongoDB Integration Testing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/example/productservice/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/example/productservice/entity/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/test/java/com/example/productservice/TestProductServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/test/java/com/example/productservice/TestProductServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/test/java/com/example/productservice/TestcontainersConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/test/java/com/example/productservice/TestcontainersConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/test/java/com/example/productservice/repository/ProductRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/test/java/com/example/productservice/repository/ProductRepositoryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +48,9 @@
         <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
       </MavenGeneralSettings>
     </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -274,7 +272,7 @@
       <workItem from="1741475751818" duration="12405000" />
       <workItem from="1741496521692" duration="1812000" />
       <workItem from="1741585940941" duration="2687000" />
-      <workItem from="1741623429434" duration="1817000" />
+      <workItem from="1741623429434" duration="2505000" />
     </task>
     <task id="LOCAL-00001" summary="solving compile errors">
       <option name="closed" value="true" />
@@ -308,7 +306,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741498040317</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="MongoDB Integration Testing">
+      <option name="closed" value="true" />
+      <created>1741625701017</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1741625701017</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,6 +336,7 @@
     <MESSAGE value="github workflow" />
     <MESSAGE value="github workflow v2" />
     <MESSAGE value="Bug fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug fix" />
+    <MESSAGE value="MongoDB Integration Testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="MongoDB Integration Testing" />
   </component>
 </project>
