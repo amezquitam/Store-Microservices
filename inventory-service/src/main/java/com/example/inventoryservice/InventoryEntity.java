@@ -12,7 +12,6 @@ public class InventoryEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID inventoryId;
 
-    @Column(unique = true, nullable = false)
     private UUID productId;
 
     private Long stock;

@@ -11,11 +11,10 @@ import java.util.UUID;
 public interface InventoryRepository extends JpaRepository<InventoryEntity, UUID> {
 
 
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Transactional
-    @Query("UPDATE InventoryEntity i SET i.stock = i.stock - :amount WHERE i.productId = :productId AND i.stock >= :amount")
-    int decrementStock(UUID productId, Long amount);
-
+    @Query("UPDATE InventoryEntity i SET i.stock = (i.stock - :amount) WHERE i.inventoryId = :inventoryId AND i.stock >= :amount")
+    int decrementStock(UUID inventoryId, Long amount);
 
     Optional<InventoryEntity> findByProductId(UUID uuid);
 }
