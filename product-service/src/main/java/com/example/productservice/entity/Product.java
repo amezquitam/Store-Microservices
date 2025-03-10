@@ -16,15 +16,13 @@ import java.util.UUID;
 public class Product {
 
     @Id
-    private UUID id = UUID.randomUUID();
+    private UUID id;
 
     private String name;
 
     private String description;
 
     private Double price;
-
-    private Integer stock;
 
     private String category;
 }
