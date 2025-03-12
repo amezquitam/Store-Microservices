@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea7b7b80-917c-441f-89b3-22374c1534f0" name="Changes" comment="MongoDB Integration Testing 2.0">
-      <change afterPath="$PROJECT_DIR$/inventory-service/src/test/java/com/example/inventoryservice/InventoryRepositoryTest.java" afterDir="false" />
+    <list default="true" id="ea7b7b80-917c-441f-89b3-22374c1534f0" name="Changes" comment="Orders and Inventory Integration Test with PostgreSQL">
+      <change afterPath="$PROJECT_DIR$/order-service/src/test/java/com/example/orderservice/OrderServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/com/example/inventoryservice/InventoryEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/example/inventoryservice/InventoryEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/com/example/inventoryservice/InventoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/example/inventoryservice/InventoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/test/java/com/example/orderservice/OrderRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/test/java/com/example/orderservice/OrderRepositoryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,8 +65,11 @@
   "keyToString": {
     "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
     "HTTP Request.rest-api | #1.executor": "Run",
+    "JUnit.All in Store (1).executor": "Run",
+    "JUnit.All in Store.executor": "Run",
     "JUnit.InventoryRepositoryTest.executor": "Run",
     "JUnit.InventoryRepositoryTest.givenExistingInventory_whenDecrementStock_thenStockIsUpdated.executor": "Run",
+    "JUnit.OrderServiceTest.executor": "Run",
     "JUnit.ProductRepositoryTest.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
@@ -102,6 +102,7 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.example.orderservice" />
       <recent name="com.example.inventoryservice" />
       <recent name="com.example.productservice.repository" />
     </key>
@@ -116,9 +117,22 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.InventoryRepositoryTest">
-    <configuration name="rest-api | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api.http" executionIdentifier="#1" runType="Run single request">
-      <method v="2" />
+  <component name="RunManager" selected="JUnit.OrderServiceTest">
+    <configuration name="All in Store (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Store" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in Store" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Store" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="InventoryRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="inventory-service" />
@@ -151,16 +165,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="product-service" />
+    <configuration name="OrderServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="order-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.productservice.repository.*" />
+          <option name="PATTERN" value="com.example.orderservice.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.example.productservice.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.example.productservice.repository.ProductRepositoryTest" />
+      <option name="PACKAGE_NAME" value="com.example.orderservice" />
+      <option name="MAIN_CLASS_NAME" value="com.example.orderservice.OrderServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -257,14 +271,6 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="tests" factoryName="Autodetect">
       <module name="Store" />
       <option name="ENV_FILES" value="" />
@@ -303,11 +309,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.OrderServiceTest" />
+        <item itemvalue="JUnit.All in Store (1)" />
+        <item itemvalue="JUnit.All in Store" />
         <item itemvalue="JUnit.InventoryRepositoryTest" />
         <item itemvalue="JUnit.InventoryRepositoryTest.givenExistingInventory_whenDecrementStock_thenStockIsUpdated" />
-        <item itemvalue="JUnit.ProductRepositoryTest" />
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-        <item itemvalue="HTTP Request.rest-api | #1" />
       </list>
     </recent_temporary>
   </component>
@@ -331,7 +337,8 @@
       <workItem from="1741475751818" duration="12405000" />
       <workItem from="1741496521692" duration="1812000" />
       <workItem from="1741585940941" duration="2687000" />
-      <workItem from="1741623429434" duration="7225000" />
+      <workItem from="1741623429434" duration="8385000" />
+      <workItem from="1741797460841" duration="721000" />
     </task>
     <task id="LOCAL-00001" summary="solving compile errors">
       <option name="closed" value="true" />
@@ -381,7 +388,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741626439030</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Orders and Inventory Integration Test with PostgreSQL">
+      <option name="closed" value="true" />
+      <created>1741631126070</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1741631126071</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -405,6 +420,7 @@
     <MESSAGE value="Bug fix" />
     <MESSAGE value="MongoDB Integration Testing" />
     <MESSAGE value="MongoDB Integration Testing 2.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="MongoDB Integration Testing 2.0" />
+    <MESSAGE value="Orders and Inventory Integration Test with PostgreSQL" />
+    <option name="LAST_COMMIT_MESSAGE" value="Orders and Inventory Integration Test with PostgreSQL" />
   </component>
 </project>
