@@ -27,16 +27,18 @@ public class InventoryController {
     @GetMapping("/{productId}")
     public Mono<ResponseEntity<InventoryEntity>> getInventoryByProductId(@PathVariable UUID productId) {
         return Mono.defer(() ->
-                Mono.just(inventoryService.getInventoryOf(productId))
-                        .map(ResponseEntity::ok)
-                        .onErrorResume(e -> Mono.just(ResponseEntity.notFound().build()))
-        );
+                        Mono.just(inventoryService.getInventoryOf(productId))
+                )
+                .map(ResponseEntity::ok)
+                .onErrorResume(e -> Mono.just(ResponseEntity.notFound().build()));
     }
 
     // POST: Create a new inventory
     @PostMapping
-    public Mono<InventoryEntity> createInventory(@RequestBody InventoryEntity inventoryEntity) {
-        return Mono.defer(() -> Mono.just(inventoryService.createInventory(inventoryEntity)));
+    public Mono<ResponseEntity<InventoryEntity>> createInventory(@RequestBody InventoryEntity inventoryEntity) {
+        return Mono.defer(() -> Mono.just(inventoryService.createInventory(inventoryEntity)))
+                .map(ResponseEntity::ok)
+                .onErrorResume(e -> Mono.just(ResponseEntity.badRequest().build()));
     }
 
     // PUT: Update an existing inventory

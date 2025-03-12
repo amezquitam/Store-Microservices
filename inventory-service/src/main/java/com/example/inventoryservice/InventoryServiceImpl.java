@@ -3,6 +3,7 @@ package com.example.inventoryservice;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @Service
@@ -21,11 +22,11 @@ public class InventoryServiceImpl implements InventoryService {
     @Override
     public InventoryEntity getInventoryOf(UUID productId) {
         return inventoryRepository.findByProductId(productId)
-                .orElseThrow(() -> new RuntimeException("Inventory with given product id not found"));
+                .orElseThrow(() -> new NoSuchElementException("Inventory with given product id not found"));
     }
 
     @Override
-    public void decrementInventoryOf(UUID productId, Long amount) {
+    public Boolean decrementInventoryOf(UUID productId, Long amount) {
         int success = inventoryRepository.decrementStock(productId, amount);
 
         if (success != 1) {
@@ -34,10 +35,15 @@ public class InventoryServiceImpl implements InventoryService {
                 throw new RuntimeException("Insufficient stock");
             }
         }
+
+        return success == 1;
     }
 
     @Override
     public InventoryEntity createInventory(InventoryEntity inventory) {
+        if (inventory.getStock() < 0) {
+            throw new IllegalArgumentException("Invalid value for stock");
+        }
         return inventoryRepository.save(inventory);
     }
 

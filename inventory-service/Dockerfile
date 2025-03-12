@@ -3,6 +3,11 @@ WORKDIR /app
 COPY pom.xml .
 RUN mvn dependency:go-offline
 COPY src ./src
+
+ENV TESTCONTAINERS_HOST_OVERRIDE=host.docker.internal
+ENV DOCKER_HOST=unix:///var/run/docker.sock
+
+RUN mvn test
 RUN mvn package -DskipTests
 
 FROM eclipse-temurin:17-jdk-alpine

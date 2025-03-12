@@ -10,7 +10,7 @@ public interface InventoryService {
 
     InventoryEntity getInventoryOf(UUID productId);
 
-    void decrementInventoryOf(UUID productId, Long amount);
+    Boolean decrementInventoryOf(UUID productId, Long amount);
 
     InventoryEntity createInventory(InventoryEntity inventory);
 
