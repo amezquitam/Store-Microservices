@@ -1,6 +1,8 @@
 package com.example.orderservice;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -19,14 +21,15 @@ public class OrderEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(nullable = false)
+    @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime orderDate;
 
-    @Column(nullable = false)
+    @NotNull
     private String status;
 
-    @Column(nullable = false)
+    @NotNull
+    @Min(0)
     private Double totalAmount;
 
 }

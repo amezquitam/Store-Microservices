@@ -4,13 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea7b7b80-917c-441f-89b3-22374c1534f0" name="Changes" comment="Orders and Inventory Integration Test with PostgreSQL">
+    <list default="true" id="ea7b7b80-917c-441f-89b3-22374c1534f0" name="Changes" comment="removing tests temporally">
+      <change afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/example/inventoryservice/HostNameController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/example/orderservice/HostNameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/com/example/inventoryservice/InventoryEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/example/inventoryservice/InventoryEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/com/example/inventoryservice/InventoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/example/inventoryservice/InventoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/src/test/java/com/example/inventoryservice/InventoryRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/test/java/com/example/inventoryservice/InventoryRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/src/test/java/com/example/inventoryservice/InventoryServiceApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/src/test/java/com/example/inventoryservice/TestInventoryServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/test/java/com/example/inventoryservice/TestInventoryServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/src/test/java/com/example/inventoryservice/TestcontainersConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/example/orderservice/OrderEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/example/orderservice/OrderEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/example/orderservice/OrderServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/example/orderservice/OrderServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/test/java/com/example/orderservice/OrderRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/test/java/com/example/orderservice/OrderRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/test/java/com/example/orderservice/OrderServiceApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/test/java/com/example/orderservice/TestOrderServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/test/java/com/example/orderservice/TestOrderServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/test/java/com/example/orderservice/TestcontainersConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-service/src/test/java/com/example/paymentservice/TestcontainersConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/src/test/java/com/example/paymentservice/TestcontainersConfiguration.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +38,8 @@
       <list>
         <option value="Dockerfile" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -71,12 +87,16 @@
     "HTTP Request.rest-api | #1.executor": "Run",
     "JUnit.All in Store (1).executor": "Run",
     "JUnit.All in Store.executor": "Run",
+    "JUnit.All in inventory-service (1).executor": "Run",
+    "JUnit.All in inventory-service.executor": "Run",
+    "JUnit.All in order-service.executor": "Run",
     "JUnit.InventoryControllerTest.executor": "Run",
     "JUnit.InventoryRepositoryTest.executor": "Run",
     "JUnit.InventoryRepositoryTest.givenExistingInventory_whenDecrementStock_thenStockIsUpdated.executor": "Run",
     "JUnit.InventoryServiceTest.executor": "Run",
     "JUnit.OrderServiceTest.executor": "Run",
     "JUnit.ProductRepositoryTest.executor": "Run",
+    "JUnit.Whole project.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -212,47 +232,36 @@
       <option name="USE_PATTERN" value="false" />
       <method v="2" />
     </configuration>
-    <configuration name="InventoryControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="All in inventory-service (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="inventory-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.inventoryservice.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.inventoryservice" />
-      <option name="MAIN_CLASS_NAME" value="com.example.inventoryservice.InventoryControllerTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InventoryServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="All in inventory-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="inventory-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.inventoryservice.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.inventoryservice" />
-      <option name="MAIN_CLASS_NAME" value="com.example.inventoryservice.InventoryServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OrderServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="All in order-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="order-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.orderservice.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.orderservice" />
-      <option name="MAIN_CLASS_NAME" value="com.example.orderservice.OrderServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Whole project" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -309,24 +318,13 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="inventory-service/Dockerfile build" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
-      <deployment type="dockerfile">
-        <settings>
-          <option name="imageTag" value="maven3.9.1-amazoncorretto-17_build" />
-          <option name="buildCliOptions" value="--target build" />
-          <option name="buildOnly" value="true" />
-          <option name="sourceFilePath" value="inventory-service/Dockerfile" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-        <item itemvalue="Docker.inventory-service/Dockerfile build" />
-        <item itemvalue="JUnit.InventoryControllerTest" />
-        <item itemvalue="JUnit.InventoryServiceTest" />
-        <item itemvalue="JUnit.OrderServiceTest" />
+        <item itemvalue="JUnit.Whole project" />
+        <item itemvalue="JUnit.All in order-service" />
+        <item itemvalue="JUnit.All in inventory-service (1)" />
+        <item itemvalue="JUnit.All in inventory-service" />
       </list>
     </recent_temporary>
   </component>
@@ -353,7 +351,7 @@
       <workItem from="1741623429434" duration="8385000" />
       <workItem from="1741797460841" duration="721000" />
       <workItem from="1741798728059" duration="5815000" />
-      <workItem from="1741820849706" duration="951000" />
+      <workItem from="1741820849706" duration="9935000" />
     </task>
     <task id="LOCAL-00001" summary="solving compile errors">
       <option name="closed" value="true" />
@@ -411,7 +409,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741631126071</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="removing tests temporally">
+      <option name="closed" value="true" />
+      <created>1741821883548</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1741821883548</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -436,6 +442,7 @@
     <MESSAGE value="MongoDB Integration Testing" />
     <MESSAGE value="MongoDB Integration Testing 2.0" />
     <MESSAGE value="Orders and Inventory Integration Test with PostgreSQL" />
-    <option name="LAST_COMMIT_MESSAGE" value="Orders and Inventory Integration Test with PostgreSQL" />
+    <MESSAGE value="removing tests temporally" />
+    <option name="LAST_COMMIT_MESSAGE" value="removing tests temporally" />
   </component>
 </project>

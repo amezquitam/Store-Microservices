@@ -41,9 +41,6 @@ public class InventoryServiceImpl implements InventoryService {
 
     @Override
     public InventoryEntity createInventory(InventoryEntity inventory) {
-        if (inventory.getStock() < 0) {
-            throw new IllegalArgumentException("Invalid value for stock");
-        }
         return inventoryRepository.save(inventory);
     }
 

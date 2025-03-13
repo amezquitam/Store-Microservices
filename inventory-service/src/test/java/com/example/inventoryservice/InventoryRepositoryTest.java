@@ -22,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class InventoryRepositoryTest {
 
     @Container
-    public static PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>("postgres:15-alpine")
+    public static PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>("postgres:15.4-alpine")
             .withDatabaseName("inventory_db")
             .withUsername("test")
             .withPassword("test");

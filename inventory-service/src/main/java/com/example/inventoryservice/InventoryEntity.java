@@ -1,6 +1,8 @@
 package com.example.inventoryservice;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.util.UUID;
@@ -14,9 +16,12 @@ public class InventoryEntity {
 
     private UUID productId;
 
+    @Min(0)
     private Long stock;
 
+    @Min(0)
     private Long minimumQuantity;
 
+    @Min(0)
     private Long maximumQuantity;
 }
