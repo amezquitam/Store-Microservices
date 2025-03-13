@@ -4,16 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea7b7b80-917c-441f-89b3-22374c1534f0" name="Changes" comment="Orders and Inventory Integration Test with PostgreSQL">
-      <change afterPath="$PROJECT_DIR$/payment-service/src/test/java/com/example/paymentservice/PaymentControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
+    <list default="true" id="ea7b7b80-917c-441f-89b3-22374c1534f0" name="Changes" comment="PaymentController Test Added">
+      <change afterPath="$PROJECT_DIR$/eureka-server/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/example/productservice/controller/HostNameController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/product-service/src/test/java/com/example/productservice/ProductControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/src/main/java/com/example/paymentservice/controller/PaymentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/src/main/java/com/example/paymentservice/PaymentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/src/main/java/com/example/paymentservice/entity/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/src/main/java/com/example/paymentservice/Payment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/src/main/java/com/example/paymentservice/repository/PaymentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/src/main/java/com/example/paymentservice/PaymentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/src/main/java/com/example/paymentservice/service/PaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/src/main/java/com/example/paymentservice/PaymentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/src/main/java/com/example/paymentservice/service/PaymentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/src/main/java/com/example/paymentservice/PaymentServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/example/productservice/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/example/productservice/entity/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/example/productservice/ProductServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/example/productservice/ProductServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/example/productservice/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/example/productservice/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/example/productservice/service/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/example/productservice/service/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/test/java/com/example/productservice/repository/ProductRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/test/java/com/example/productservice/ProductRepositoryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,15 +28,16 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Dockerfile" />
         <option value="Interface" />
         <option value="JUnit5 Test Class" />
+        <option value="Dockerfile" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -39,12 +45,12 @@
     &quot;assignee&quot;: &quot;amezquitam&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/amezquitam/Store-Microservices.git&quot;,
-    &quot;accountId&quot;: &quot;7ee249cb-ee51-4406-9ab8-3a8abfe8c731&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/amezquitam/Store-Microservices",
+    "accountId": "1b471751-2137-415b-b459-619631abd3db"
   }
-}</component>
+}]]></component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -69,6 +75,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Docker.docker-compose.yml.eureka-server: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
     "Docker.inventory-service/Dockerfile build.executor": "Run",
     "HTTP Request.All in rest-api.executor": "Run",
@@ -84,6 +91,9 @@
     "JUnit.PaymentControllerTest.testGetPayment.executor": "Run",
     "JUnit.PaymentControllerTest.testGetPayments.executor": "Run",
     "JUnit.PaymentControllerTest.testUpdatePayment.executor": "Run",
+    "JUnit.ProductControllerTest.testCreatePayment.executor": "Run",
+    "JUnit.ProductControllerTest.testDeleteProduct.executor": "Run",
+    "JUnit.ProductControllerTest.testGetProducts.executor": "Run",
     "JUnit.ProductRepositoryTest.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
@@ -117,6 +127,7 @@
       <recent name="" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.productservice" />
       <recent name="com.example.paymentservice" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
@@ -135,7 +146,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.PaymentControllerTest.testUpdatePayment">
+  <component name="RunManager" selected="Docker.docker-compose.yml.eureka-server: Compose Deployment">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="Store" />
       <option name="ENV_FILES" value="" />
@@ -222,54 +233,6 @@
       <option name="USE_PATTERN" value="false" />
       <method v="2" />
     </configuration>
-    <configuration name="PaymentControllerTest.testCreatePayment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="payment-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.paymentservice.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.paymentservice" />
-      <option name="MAIN_CLASS_NAME" value="com.example.paymentservice.PaymentControllerTest" />
-      <option name="METHOD_NAME" value="testCreatePayment" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PaymentControllerTest.testGetPayment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="payment-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.paymentservice.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.paymentservice" />
-      <option name="MAIN_CLASS_NAME" value="com.example.paymentservice.PaymentControllerTest" />
-      <option name="METHOD_NAME" value="testGetPayment" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PaymentControllerTest.testGetPayments" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="payment-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.paymentservice.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.paymentservice" />
-      <option name="MAIN_CLASS_NAME" value="com.example.paymentservice.PaymentControllerTest" />
-      <option name="METHOD_NAME" value="testGetPayments" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="PaymentControllerTest.testUpdatePayment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="payment-service" />
       <extension name="coverage">
@@ -282,6 +245,61 @@
       <option name="MAIN_CLASS_NAME" value="com.example.paymentservice.PaymentControllerTest" />
       <option name="METHOD_NAME" value="testUpdatePayment" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductControllerTest.testCreatePayment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="product-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.productservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.productservice" />
+      <option name="MAIN_CLASS_NAME" value="com.example.productservice.ProductControllerTest" />
+      <option name="METHOD_NAME" value="testCreatePayment" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductControllerTest.testDeleteProduct" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="product-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.productservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.productservice" />
+      <option name="MAIN_CLASS_NAME" value="com.example.productservice.ProductControllerTest" />
+      <option name="METHOD_NAME" value="testDeleteProduct" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductControllerTest.testGetProducts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="product-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.productservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.productservice" />
+      <option name="MAIN_CLASS_NAME" value="com.example.productservice.ProductControllerTest" />
+      <option name="METHOD_NAME" value="testGetProducts" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="eureka-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.eurekaserver.EurekaServerApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -330,9 +348,14 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-compose.yml.eureka-server: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
+          <option name="services">
+            <list>
+              <option value="eureka-server" />
+            </list>
+          </option>
           <option name="sourceFilePath" value="docker-compose.yml" />
         </settings>
       </deployment>
@@ -340,11 +363,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-compose.yml.eureka-server: Compose Deployment" />
+        <item itemvalue="JUnit.ProductControllerTest.testDeleteProduct" />
+        <item itemvalue="JUnit.ProductControllerTest.testGetProducts" />
+        <item itemvalue="JUnit.ProductControllerTest.testCreatePayment" />
         <item itemvalue="JUnit.PaymentControllerTest.testUpdatePayment" />
-        <item itemvalue="JUnit.PaymentControllerTest.testGetPayment" />
-        <item itemvalue="JUnit.PaymentControllerTest.testGetPayments" />
-        <item itemvalue="JUnit.PaymentControllerTest.testCreatePayment" />
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -371,7 +394,7 @@
       <workItem from="1741623429434" duration="8385000" />
       <workItem from="1741797460841" duration="721000" />
       <workItem from="1741798728059" duration="5815000" />
-      <workItem from="1741821616134" duration="5116000" />
+      <workItem from="1741821616134" duration="9162000" />
     </task>
     <task id="LOCAL-00001" summary="solving compile errors">
       <option name="closed" value="true" />
@@ -429,7 +452,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741631126071</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="PaymentController Test Added">
+      <option name="closed" value="true" />
+      <created>1741827096574</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1741827096574</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -454,6 +485,7 @@
     <MESSAGE value="MongoDB Integration Testing" />
     <MESSAGE value="MongoDB Integration Testing 2.0" />
     <MESSAGE value="Orders and Inventory Integration Test with PostgreSQL" />
-    <option name="LAST_COMMIT_MESSAGE" value="Orders and Inventory Integration Test with PostgreSQL" />
+    <MESSAGE value="PaymentController Test Added" />
+    <option name="LAST_COMMIT_MESSAGE" value="PaymentController Test Added" />
   </component>
 </project>

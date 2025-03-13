@@ -60,11 +60,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteProduct(UUID id) {
+    public Void deleteProduct(UUID id) {
         // Eliminar producto por ID si existe
         if (!productRepository.existsById(id)) {
             throw new RuntimeException("Producto no encontrado con ID: " + id);
         }
         productRepository.deleteById(id);
+        return null;
     }
 }
