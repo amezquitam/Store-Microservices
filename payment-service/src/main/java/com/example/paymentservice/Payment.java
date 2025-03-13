@@ -1,4 +1,4 @@
-package com.example.paymentservice.entity;
+package com.example.paymentservice;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
