@@ -17,6 +17,7 @@ public class HostNameController {
     @GetMapping(path = "/hostname")
     public ResponseEntity<String> hostname() {
         String hostname = env.getProperty("HOSTNAME"); //(container ID)
+        System.out.println("HOST NAME" + hostname);
         return ResponseEntity.ok().body(hostname);
     }
 }
