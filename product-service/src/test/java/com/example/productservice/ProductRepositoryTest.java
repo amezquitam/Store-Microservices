@@ -1,7 +1,7 @@
-package com.example.productservice.repository;
+package com.example.productservice;
 
-import com.example.productservice.AbstractDataMongoTest;
 import com.example.productservice.entity.Product;
+import com.example.productservice.repository.ProductRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -100,8 +100,13 @@ services:
       SPRING_DATA_MONGODB_URI: mongodb://root:root@product-mongo:27017/productdb?authSource=admin
       SPRING_DATA_MONGODB_USERNAME: root
       SPRING_DATA_MONGODB_PASSWORD: root
+      EUREKA_SERVER_URL: "http://eureka-server:8761/eureka/"
     ports:
       - "8083:8080"
+    networks:
+      - eureka-network
+    deploy:
+      replicas: 3
 
   product-mongo:
     image: mongo:4.0
@@ -112,6 +117,20 @@ services:
     ports: []
     volumes:
       - mongo_data:/data/db
+
+  eureka-server:
+    build:
+      context: ./eureka-server
+      dockerfile: Dockerfile
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - eureka-network
+
+networks:
+  eureka-network:
+    driver: bridge
 
 volumes:
   order_data:

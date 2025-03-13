@@ -1,7 +1,5 @@
-package com.example.paymentservice.service;
+package com.example.paymentservice;
 
-import com.example.paymentservice.entity.Payment;
-import com.example.paymentservice.repository.PaymentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

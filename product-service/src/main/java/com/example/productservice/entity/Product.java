@@ -16,7 +16,7 @@ import java.util.UUID;
 public class Product {
 
     @Id
-    private UUID id;
+    private UUID id = UUID.randomUUID();
 
     private String name;
 
