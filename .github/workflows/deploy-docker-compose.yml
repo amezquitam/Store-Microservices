@@ -34,16 +34,22 @@ jobs:
       - name: Run Tests
         run: |
           cd ./eureka-server
+          sudo chmod +x ./mvnw
           ./mvnw test
           cd ./inventory-service
+          sudo chmod +x ./mvnw
           ./mvnw test
           cd ./order-service
+          sudo chmod +x ./mvnw
           ./mvnw test
           cd ./payment-service
+          sudo chmod +x ./mvnw
           ./mvnw test
           cd ./product-service
+          sudo chmod +x ./mvnw
           ./mvnw test
           cd ./service-discovery
+          sudo chmod +x ./mvnw
           ./mvnw test
         continue-on-error: false
 
