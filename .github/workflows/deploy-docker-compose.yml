@@ -24,13 +24,6 @@ jobs:
           sudo sh get-docker.sh
         continue-on-error: false
 
-      - name: Install Docker Compose
-        run: |
-          sudo curl -L "https://github.com/docker/compose/releases/download/v2.3.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-          sudo chmod +x /usr/local/bin/docker-compose
-          docker-compose --version
-        continue-on-error: false
-
       - name: Run Tests
         run: |
           cd ./eureka-server
@@ -52,13 +45,3 @@ jobs:
           sudo chmod +x ./mvnw
           ./mvnw test
         continue-on-error: false
-
-      # Step 4: Build and start services
-      - name: Start Docker Compose
-        run: |
-          docker-compose pull
-          docker-compose up --build -d
-
-      # Step 5: Verify services are running (optional)
-      - name: Verify Running Containers
-        run: docker ps
