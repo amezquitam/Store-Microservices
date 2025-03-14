@@ -1,7 +1,5 @@
-package com.example.paymentservice.controller;
+package com.example.paymentservice;
 
-import com.example.paymentservice.entity.Payment;
-import com.example.paymentservice.service.PaymentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;

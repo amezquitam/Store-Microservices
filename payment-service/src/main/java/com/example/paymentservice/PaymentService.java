@@ -1,6 +1,5 @@
-package com.example.paymentservice.service;
+package com.example.paymentservice;
 
-import com.example.paymentservice.entity.Payment;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;

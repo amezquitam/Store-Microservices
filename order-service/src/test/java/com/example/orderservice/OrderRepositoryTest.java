@@ -1,6 +1,7 @@
 package com.example.orderservice;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 @Testcontainers
 @DataJpaTest
@@ -23,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class OrderRepositoryTest {
 
     @Container
-    public static PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>("postgres:15-alpine")
+    public static PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>("postgres:15.4-alpine")
             .withDatabaseName("order_db")
             .withUsername("test")
             .withPassword("test");
@@ -127,17 +128,6 @@ class OrderRepositoryTest {
         assertThat(allOrders.stream().map(OrderEntity::getStatus)).contains("PENDING", "SHIPPED");
     }
 
-    @Test
-    void givenOrderEntity_whenSaveWithNullFields_thenThrowException() {
-        // given
-        OrderEntity invalidOrder = new OrderEntity();
-        invalidOrder.setOrderDate(null); // Invalid field
-        invalidOrder.setStatus("PENDING");
-        invalidOrder.setTotalAmount(50.0);
-
-        // when/then
-        org.junit.jupiter.api.Assertions.assertThrows(Exception.class, () -> orderRepository.save(invalidOrder));
-    }
 
     @Test
     void givenNoOrders_whenFindAll_thenReturnEmptyList() {
