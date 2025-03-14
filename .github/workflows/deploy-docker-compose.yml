@@ -31,6 +31,22 @@ jobs:
           docker-compose --version
         continue-on-error: false
 
+      - name: Run Tests
+        run: |
+          cd ./eureka-server
+          ./mvnw test
+          cd ./inventory-service
+          ./mvnw test
+          cd ./order-service
+          ./mvnw test
+          cd ./payment-service
+          ./mvnw test
+          cd ./product-service
+          ./mvnw test
+          cd ./service-discovery
+          ./mvnw test
+        continue-on-error: false
+
       # Step 4: Build and start services
       - name: Start Docker Compose
         run: |
