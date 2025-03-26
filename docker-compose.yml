@@ -1,4 +1,3 @@
-version: '3.8'
 
 services:
   order-service:
@@ -147,6 +146,15 @@ services:
       - "8080"
     networks:
       - eureka-network
+  gateway:
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8900"
+    networks:
+      - eureka-network
+
 
 
 
