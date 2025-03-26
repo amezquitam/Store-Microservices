@@ -44,4 +44,7 @@ jobs:
           cd ../service-discovery
           sudo chmod +x ./mvnw
           ./mvnw test
+          cd ../gateway
+          sudo chmod +x ./mvnw
+          ./mvnw test
         continue-on-error: false
