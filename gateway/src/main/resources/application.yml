@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true  # Habilita la deteccion automatica de servicios en Eureka
+          lower-case-service-id: true  # Usa nombres en minusculas para los servicios
+
+      routes:
+        - id: product-service
+          uri: lb://product-service  # Se resolvera dinamicamente en Eureka
+          predicates:
+            - Path=/product/**
+          filters:
+            - name: CorrelationIdFilter
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/
+  instance:
+    prefer-ip-address: true

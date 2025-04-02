@@ -14,10 +14,11 @@ services:
       EUREKA_SERVER_URL: "http://eureka-server:8761/eureka/"
     depends_on:
       - order-postgres
+      - eureka-server
     networks:
       - eureka-network
     deploy:
-      replicas: 3
+      replicas: 1
 
   order-postgres:
     image: postgres:15.4-alpine
@@ -39,6 +40,7 @@ services:
     depends_on:
       - product-service
       - inventory-postgres
+      - eureka-server
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://inventory-postgres:5432/inventorydb
       SPRING_DATASOURCE_USERNAME: postgres
@@ -50,7 +52,7 @@ services:
     networks:
       - eureka-network
     deploy:
-      replicas: 3
+      replicas: 1
 
   inventory-postgres:
     image: postgres:15.4-alpine
@@ -71,6 +73,7 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - payment-postgres
+      - eureka-server
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://payment-postgres:5432/paymentdb
       SPRING_DATASOURCE_USERNAME: postgres
@@ -82,7 +85,7 @@ services:
     networks:
       - eureka-network
     deploy:
-      replicas: 3
+      replicas: 1
 
   payment-postgres:
     image: postgres:15.4-alpine
@@ -103,6 +106,7 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - product-mongo
+      - eureka-server
     environment:
       SPRING_PROFILES_ACTIVE: dev
       SPRING_DATA_MONGODB_URI: mongodb://root:root@product-mongo:27017/productdb?authSource=admin
@@ -114,7 +118,7 @@ services:
     networks:
       - eureka-network
     deploy:
-      replicas: 3
+      replicas: 1
 
   product-mongo:
     image: mongo:4.0
@@ -134,7 +138,7 @@ services:
       dockerfile: Dockerfile
     container_name: eureka-server
     ports:
-      - "8761"
+      - "8761:8761"
     networks:
       - eureka-network
 
@@ -142,14 +146,20 @@ services:
     build:
       context: ./service-discovery
       dockerfile: Dockerfile
+    depends_on:
+      - eureka-server
     ports:
       - "8080"
     networks:
       - eureka-network
+
   gateway:
     build:
       context: ./gateway
       dockerfile: Dockerfile
+    depends_on:
+      - eureka-server
+      - service-discovery
     ports:
       - "8900"
     networks:
