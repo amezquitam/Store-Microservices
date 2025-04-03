@@ -1,3 +1,12 @@
+GET http://localhost:8900/api/products
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3
+Accept-Encoding: br, deflate, gzip, x-gzip
+
+<> 2025-04-02T200546.200.json
+
+###
+
 GET http://localhost:8082/api/payments
 Accept: application/json
 User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4.1

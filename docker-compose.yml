@@ -161,7 +161,7 @@ services:
       - eureka-server
       - service-discovery
     ports:
-      - "8900"
+      - "8900:8900"
     networks:
       - eureka-network
 

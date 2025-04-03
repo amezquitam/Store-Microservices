@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 public class ServiceConsumerController {
     @Autowired
     private RestTemplate restTemplate;
+
     @GetMapping("/consume-service")
     public String consumeService() {
         String serviceUrl = "http://EUREKA-CLIENT:8080/hostname";

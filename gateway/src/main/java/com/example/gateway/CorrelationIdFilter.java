@@ -1,30 +1,27 @@
 package com.example.gateway;
 
-import org.springframework.cloud.gateway.filter.GatewayFilter;
-import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
-import org.springframework.http.HttpHeaders;
+import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
 @Component
-public class CorrelationIdFilter extends AbstractGatewayFilterFactory<CorrelationIdFilter.Config> {
+public class CorrelationIdFilter implements GlobalFilter, Ordered {
 
-    public static class Config {
-    }
+    @Override
+    public Mono<Void> filter(ServerWebExchange exchange, org.springframework.cloud.gateway.filter.GatewayFilterChain chain) {
+        exchange.mutate().request(
+                builder -> builder.header("X-Correlation-Id", UUID.randomUUID().toString())
+        );
 
-    public CorrelationIdFilter() {
-        super(Config.class);
+        return chain.filter(exchange);
     }
 
     @Override
-    public GatewayFilter apply(Config config) {
-        return (exchange, chain) -> {
-
-            HttpHeaders headers = exchange.getRequest().getHeaders();
-            headers.add("X-Correlation-Id", UUID.randomUUID().toString());
-
-            return chain.filter(exchange);
-        };
+    public int getOrder() {
+        return -1;
     }
 }
