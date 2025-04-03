@@ -18,6 +18,7 @@ spring:
             - Path=/product/**
           filters:
             - name: CorrelationIdFilter
+            - name: RedisCachingGatewayFilterFactory
 
 eureka:
   client:
