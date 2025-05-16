@@ -16,7 +16,6 @@ services:
     depends_on:
       - order-postgres
       - eureka-server
-      - service-discovery
     networks:
       - eureka-network
     deploy:
@@ -43,7 +42,6 @@ services:
     depends_on:
       - product-service
       - inventory-postgres
-      - service-discovery
       - eureka-server
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://inventory-postgres:5432/inventory_db
@@ -80,7 +78,6 @@ services:
     depends_on:
       - payment-postgres
       - eureka-server
-      - service-discovery
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://payment-postgres:5432/payment_db
       SPRING_DATASOURCE_USERNAME: postgres
@@ -116,7 +113,6 @@ services:
     depends_on:
       - product-mongo
       - eureka-server
-      - service-discovery
     environment:
       SPRING_PROFILES_ACTIVE: dev
       SPRING_DATA_MONGODB_URI: mongodb://root:root@product-mongo:27017/product_db?authSource=admin
@@ -153,19 +149,6 @@ services:
     networks:
       - eureka-network
 
-  service-discovery:
-    build:
-      context: ./service-discovery
-      dockerfile: Dockerfile
-    environment:
-      SPRING_SECURITY_USER_PASSWORD: 1234
-    depends_on:
-      - eureka-server
-    ports:
-      - "9191:8080"
-    networks:
-      - eureka-network
-
   gateway:
     build:
       context: ./gateway
@@ -174,7 +157,6 @@ services:
       SERVER_PORT: 8080
     depends_on:
       - eureka-server
-      - service-discovery
     ports:
       - "8080:8080"
     networks:

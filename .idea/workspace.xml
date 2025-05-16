@@ -4,9 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea7b7b80-917c-441f-89b3-22374c1534f0" name="Changes" comment="Removing gateway">
+    <list default="true" id="ea7b7b80-917c-441f-89b3-22374c1534f0" name="Changes" comment="ports">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-discovery/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-discovery/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-discovery/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-discovery/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-discovery/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-discovery/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-discovery/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-discovery/src/main/java/com/example/servicediscovery/AppConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-discovery/src/main/java/com/example/servicediscovery/ServiceConsumerController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-discovery/src/main/java/com/example/servicediscovery/ServiceDiscoveryApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-discovery/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-discovery/src/test/java/com/example/servicediscovery/ServiceDiscoveryApplicationTests.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +40,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="SYNC" />
     <option name="SET_USER_NAME_GLOBALLY" value="false" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -34,12 +48,12 @@
     &quot;assignee&quot;: &quot;amezquitam&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/amezquitam/Store-Microservices.git&quot;,
-    &quot;accountId&quot;: &quot;14b2f758-592f-4c61-8fce-0a17c2b10b50&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/amezquitam/Store-Microservices.git",
+    "accountId": "0c9acaba-a757-4363-a552-dc750f72cab1"
   }
-}</component>
+}]]></component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -90,7 +104,14 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.EurekaServerApplication.executor": "Run",
+    "Spring Boot.GatewayApplication (1).executor": "Run",
+    "Spring Boot.GatewayApplication.executor": "Run",
+    "Spring Boot.InventoryServiceApplication.executor": "Run",
+    "Spring Boot.OrderServiceApplication.executor": "Run",
     "Spring Boot.PaymentServiceApplication.executor": "Run",
+    "Spring Boot.ProductServiceApplication.executor": "Run",
+    "Spring Boot.ServiceDiscoveryApplication.executor": "Run",
     "WebServerToolWindowFactoryState": "false",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
@@ -109,13 +130,16 @@
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "settings.editor.selected.configurable": "vcs.Git",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Development\Microservices\Store-Microservices" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.example.productservice" />
@@ -137,7 +161,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Docker.docker-compose.yml.keycloak: Compose Deployment">
+  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="Store" />
       <option name="ENV_FILES" value="" />
@@ -366,9 +390,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml.keycloak: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml.keycloack-postgres: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml.product-service: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml.eureka-server: Compose Deployment" />
       </list>
@@ -377,8 +401,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.59" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.59" />
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
       </set>
     </attachedChunks>
   </component>
@@ -404,6 +428,9 @@
       <workItem from="1743037962715" duration="8000" />
       <workItem from="1743635789641" duration="767000" />
       <workItem from="1744241757474" duration="5705000" />
+      <workItem from="1747255221019" duration="9000" />
+      <workItem from="1747255991358" duration="3732000" />
+      <workItem from="1747404056676" duration="9238000" />
     </task>
     <task id="LOCAL-00001" summary="solving compile errors">
       <option name="closed" value="true" />
@@ -509,7 +536,47 @@
       <option name="project" value="LOCAL" />
       <updated>1743026973947</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="naming">
+      <option name="closed" value="true" />
+      <created>1747256298180</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1747256298180</updated>
+    </task>
+    <task id="LOCAL-00015" summary="naming &amp; filter">
+      <option name="closed" value="true" />
+      <created>1747404658631</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1747404658631</updated>
+    </task>
+    <task id="LOCAL-00016" summary="dependencies">
+      <option name="closed" value="true" />
+      <created>1747408488915</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1747408488915</updated>
+    </task>
+    <task id="LOCAL-00017" summary="realm configuration">
+      <option name="closed" value="true" />
+      <created>1747408505150</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1747408505150</updated>
+    </task>
+    <task id="LOCAL-00018" summary="ports">
+      <option name="closed" value="true" />
+      <created>1747412115683</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1747412115683</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -544,6 +611,11 @@
     <MESSAGE value="Correct directories" />
     <MESSAGE value="Simplifying" />
     <MESSAGE value="Push &amp; Pray" />
-    <option name="LAST_COMMIT_MESSAGE" value="Push &amp; Pray" />
+    <MESSAGE value="naming" />
+    <MESSAGE value="naming &amp; filter" />
+    <MESSAGE value="dependencies" />
+    <MESSAGE value="realm configuration" />
+    <MESSAGE value="ports" />
+    <option name="LAST_COMMIT_MESSAGE" value="ports" />
   </component>
 </project>
