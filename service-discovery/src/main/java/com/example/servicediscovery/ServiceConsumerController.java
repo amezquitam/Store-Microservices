@@ -14,7 +14,7 @@ public class ServiceConsumerController {
 
     @GetMapping("/consume-service")
     public String consumeService() {
-        String serviceUrl = "http://EUREKA-CLIENT:8080/hostname";
+        String serviceUrl = "http://EUREKA-CLIENT/hostname";
         return restTemplate.getForObject(serviceUrl, String.class);
     }
 }
