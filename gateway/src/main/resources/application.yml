@@ -22,8 +22,6 @@ spring:
           uri: lb://product-service
           predicates:
             - Path=/api/products/**
-          filters:
-            - name: RedisCachingGatewayFilterFactory
 
         - id: inventory-service
           uri: lb://inventory-service
