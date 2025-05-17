@@ -4,13 +4,13 @@ eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
   instance:
-    lease-renewal-interval-in-seconds: 30
-    lease-expiration-duration-in-seconds: 90
+    hostname: localhost
   server:
-    enableSelfPreservation: true  # Make sure this is enabled for safety
-    evictionIntervalTimerInMs: 60000  # Frequency of eviction checks
-    renewalThreshold: 0.85  # Fraction of renewal threshold (default is 0.85)
+    waitTimeInMsWhenSyncEmpty: 0
+    response-cache-update-interval-ms: 5000
 spring:
   application:
     name: eureka-server

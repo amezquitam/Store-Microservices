@@ -3,7 +3,7 @@ services:
   order-service:
     build:
       context: ./order-service
-      dockerfile: Dockerfile
+      dockerfile: ../Dockerfile
     ports:
       - "8080"
     environment:
@@ -20,6 +20,8 @@ services:
       - eureka-network
     deploy:
       replicas: 1
+    volumes:
+      - order_deps:/root/.m2
 
   order-postgres:
     image: postgres:15.4-alpine
@@ -38,7 +40,7 @@ services:
   inventory-service:
     build:
       context: ./inventory-service
-      dockerfile: Dockerfile
+      dockerfile: ../Dockerfile
     depends_on:
       - product-service
       - inventory-postgres
@@ -56,6 +58,8 @@ services:
       - eureka-network
     deploy:
       replicas: 1
+    volumes:
+      - inventory_deps:/root/.m2
 
   inventory-postgres:
     image: postgres:15.4-alpine
@@ -74,7 +78,7 @@ services:
   payment-service:
     build:
       context: ./payment-service
-      dockerfile: Dockerfile
+      dockerfile: ../Dockerfile
     depends_on:
       - payment-postgres
       - eureka-server
@@ -91,6 +95,8 @@ services:
       - eureka-network
     deploy:
       replicas: 1
+    volumes:
+      - payment_deps:/root/.m2
 
   payment-postgres:
     image: postgres:15.4-alpine
@@ -109,7 +115,7 @@ services:
   product-service:
     build:
       context: ./product-service
-      dockerfile: Dockerfile
+      dockerfile: ../Dockerfile
     depends_on:
       - product-mongo
       - eureka-server
@@ -126,6 +132,8 @@ services:
       - eureka-network
     deploy:
       replicas: 1
+    volumes:
+      - product_deps:/root/.m2
 
   product-mongo:
     image: mongo:4.0
@@ -133,7 +141,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
-    ports: []
+    ports:
+      - "27017"
     networks:
       - eureka-network
     volumes:
@@ -152,7 +161,7 @@ services:
   gateway:
     build:
       context: ./gateway
-      dockerfile: Dockerfile
+      dockerfile: ../Dockerfile
     environment:
       SERVER_PORT: 8080
     depends_on:
@@ -191,13 +200,33 @@ services:
       - keycloak_data:/var/lib/postgresql/data
 
 
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9091:9090"
+    restart: unless-stopped
 
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    restart: unless-stopped
 
 volumes:
   order_data:
   payment_data:
   product_data:
   inventory_data:
+  order_deps:
+  payment_deps:
+  product_deps:
+  inventory_deps:
   keycloak_data:
 
 networks:

@@ -4,22 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea7b7b80-917c-441f-89b3-22374c1534f0" name="Changes" comment="ports">
+    <list default="true" id="ea7b7b80-917c-441f-89b3-22374c1534f0" name="Changes" comment="disable security">
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/com/example/gateway/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prometheus/prometheus.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-discovery/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-discovery/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-discovery/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-discovery/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-discovery/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-discovery/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-discovery/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-discovery/src/main/java/com/example/servicediscovery/AppConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-discovery/src/main/java/com/example/servicediscovery/ServiceConsumerController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-discovery/src/main/java/com/example/servicediscovery/ServiceDiscoveryApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-discovery/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-discovery/src/test/java/com/example/servicediscovery/ServiceDiscoveryApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/example/gateway/GatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/example/gateway/GatewayApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-service/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +29,8 @@
       <list>
         <option value="Interface" />
         <option value="JUnit5 Test Class" />
-        <option value="Class" />
         <option value="Dockerfile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -48,12 +46,12 @@
     &quot;assignee&quot;: &quot;amezquitam&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/amezquitam/Store-Microservices.git",
-    "accountId": "0c9acaba-a757-4363-a552-dc750f72cab1"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/amezquitam/Store-Microservices.git&quot;,
+    &quot;accountId&quot;: &quot;7ee249cb-ee51-4406-9ab8-3a8abfe8c731&quot;
   }
-}]]></component>
+}</component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -73,72 +71,73 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Docker.docker-compose.yml.eureka-server: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml.keycloack-postgres: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml.keycloak: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
-    "Docker.inventory-service/Dockerfile build.executor": "Run",
-    "HTTP Request.All in rest-api.executor": "Run",
-    "HTTP Request.rest-api | #1.executor": "Run",
-    "JUnit.All in Store (1).executor": "Run",
-    "JUnit.All in Store.executor": "Run",
-    "JUnit.InventoryControllerTest.executor": "Run",
-    "JUnit.InventoryRepositoryTest.executor": "Run",
-    "JUnit.InventoryRepositoryTest.givenExistingInventory_whenDecrementStock_thenStockIsUpdated.executor": "Run",
-    "JUnit.InventoryServiceTest.executor": "Run",
-    "JUnit.OrderServiceTest.executor": "Run",
-    "JUnit.PaymentControllerTest.testCreatePayment.executor": "Run",
-    "JUnit.PaymentControllerTest.testGetPayment.executor": "Run",
-    "JUnit.PaymentControllerTest.testGetPayments.executor": "Run",
-    "JUnit.PaymentControllerTest.testUpdatePayment.executor": "Run",
-    "JUnit.ProductControllerTest.testCreatePayment.executor": "Run",
-    "JUnit.ProductControllerTest.testDeleteProduct.executor": "Run",
-    "JUnit.ProductControllerTest.testGetProducts.executor": "Run",
-    "JUnit.ProductRepositoryTest.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.EurekaServerApplication.executor": "Run",
-    "Spring Boot.GatewayApplication (1).executor": "Run",
-    "Spring Boot.GatewayApplication.executor": "Run",
-    "Spring Boot.InventoryServiceApplication.executor": "Run",
-    "Spring Boot.OrderServiceApplication.executor": "Run",
-    "Spring Boot.PaymentServiceApplication.executor": "Run",
-    "Spring Boot.ProductServiceApplication.executor": "Run",
-    "Spring Boot.ServiceDiscoveryApplication.executor": "Run",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "jdk.selected.JAVA_MODULE": "21",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/dev/inventory-service",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "vcs.Git",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.docker-compose.yml.eureka-server: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.keycloack-postgres: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.keycloak: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.inventory-service/Dockerfile build.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.All in rest-api.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.rest-api | #1.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.All in Store (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.All in Store.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.InventoryControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.InventoryRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.InventoryRepositoryTest.givenExistingInventory_whenDecrementStock_thenStockIsUpdated.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.InventoryServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.OrderServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PaymentControllerTest.testCreatePayment.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PaymentControllerTest.testGetPayment.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PaymentControllerTest.testGetPayments.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PaymentControllerTest.testUpdatePayment.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductControllerTest.testCreatePayment.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductControllerTest.testDeleteProduct.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductControllerTest.testGetProducts.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.EurekaServerApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.GatewayApplication (1).executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.GatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.InventoryServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.OrderServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.PaymentServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ProductServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ServiceDiscoveryApplication.executor&quot;: &quot;Run&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;21&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/dev/inventory-service&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ACER\IdeaProjects\Store-Microservices" />
       <recent name="C:\Development\Microservices\Store-Microservices" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -197,55 +196,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="launchJavascriptDebuger" value="false" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Tox" factoryName="Tox">
-      <module name="Store" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Autodetect">
-      <module name="Store" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Doctests">
-      <module name="Store" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
       <method v="2" />
     </configuration>
     <configuration name="DiscoveryServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
@@ -315,6 +265,19 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="Store" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <method v="2" />
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
@@ -388,6 +351,42 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration default="true" type="tests" factoryName="Autodetect">
+      <module name="Store" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <module name="Store" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
@@ -401,8 +400,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
-        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.59" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.59" />
       </set>
     </attachedChunks>
   </component>
@@ -431,6 +430,7 @@
       <workItem from="1747255221019" duration="9000" />
       <workItem from="1747255991358" duration="3732000" />
       <workItem from="1747404056676" duration="9238000" />
+      <workItem from="1747418784993" duration="16430000" />
     </task>
     <task id="LOCAL-00001" summary="solving compile errors">
       <option name="closed" value="true" />
@@ -576,7 +576,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747412115683</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="disable security">
+      <option name="closed" value="true" />
+      <created>1747427498723</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1747427498726</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -616,6 +624,7 @@
     <MESSAGE value="dependencies" />
     <MESSAGE value="realm configuration" />
     <MESSAGE value="ports" />
-    <option name="LAST_COMMIT_MESSAGE" value="ports" />
+    <MESSAGE value="disable security" />
+    <option name="LAST_COMMIT_MESSAGE" value="disable security" />
   </component>
 </project>
