@@ -164,12 +164,15 @@ services:
       dockerfile: ../Dockerfile
     environment:
       SERVER_PORT: 8080
+      SPRING_SECURITY_USER_PASSWORD: admin
     depends_on:
       - eureka-server
     ports:
       - "8080:8080"
     networks:
       - eureka-network
+    volumes:
+      - gateway_deps:/root/.m2
 
   keycloak:
     image: quay.io/keycloak/keycloak:26.0.0
@@ -228,6 +231,7 @@ volumes:
   product_deps:
   inventory_deps:
   keycloak_data:
+  gateway_deps:
 
 networks:
   eureka-network:
