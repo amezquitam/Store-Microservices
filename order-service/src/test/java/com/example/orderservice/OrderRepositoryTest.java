@@ -1,7 +1,8 @@
 package com.example.orderservice;
 
+import com.example.orderservice.order.Order;
+import com.example.orderservice.order.OrderRepository;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +33,12 @@ class OrderRepositoryTest {
     @Autowired
     private OrderRepository orderRepository;
 
-    private OrderEntity orderEntity;
+    private Order orderEntity;
 
     @BeforeEach
     void setUp() {
-        orderEntity = new OrderEntity();
-        orderEntity.setOrderDate(LocalDateTime.now());
+        orderEntity = new Order();
+        orderEntity.setTimestamp(LocalDateTime.now());
         orderEntity.setStatus("PENDING");
         orderEntity.setTotalAmount(100.0);
         orderEntity = orderRepository.save(orderEntity);
@@ -67,7 +68,7 @@ class OrderRepositoryTest {
     @Test
     void givenOrderId_whenFindById_thenReturnOrderEntity() {
         // when
-        Optional<OrderEntity> foundOrder = orderRepository.findById(orderEntity.getId());
+        Optional<Order> foundOrder = orderRepository.findById(orderEntity.getId());
 
         // then
         assertThat(foundOrder).isPresent();
@@ -78,7 +79,7 @@ class OrderRepositoryTest {
     @Test
     void givenNonExistentOrderId_whenFindById_thenReturnEmpty() {
         // when
-        Optional<OrderEntity> foundOrder = orderRepository.findById(UUID.randomUUID());
+        Optional<Order> foundOrder = orderRepository.findById(UUID.randomUUID());
 
         // then
         assertThat(foundOrder).isNotPresent();
@@ -102,11 +103,11 @@ class OrderRepositoryTest {
         orderEntity.setStatus("COMPLETED");
 
         // when
-        OrderEntity updatedOrder = orderRepository.save(orderEntity);
+        Order updatedOrder = orderRepository.save(orderEntity);
 
         // then
         assertThat(updatedOrder.getStatus()).isEqualTo("COMPLETED");
-        Optional<OrderEntity> foundOrder = orderRepository.findById(orderEntity.getId());
+        Optional<Order> foundOrder = orderRepository.findById(orderEntity.getId());
         assertThat(foundOrder).isPresent();
         assertThat(foundOrder.get().getStatus()).isEqualTo("COMPLETED");
     }
@@ -114,8 +115,8 @@ class OrderRepositoryTest {
     @Test
     void givenMultipleOrderEntities_whenFindAll_thenAllAreReturned() {
         // given
-        OrderEntity anotherOrder = new OrderEntity();
-        anotherOrder.setOrderDate(LocalDateTime.now());
+        Order anotherOrder = new Order();
+        anotherOrder.setTimestamp(LocalDateTime.now());
         anotherOrder.setStatus("SHIPPED");
         anotherOrder.setTotalAmount(200.0);
         orderRepository.save(anotherOrder);
@@ -125,7 +126,7 @@ class OrderRepositoryTest {
 
         // then
         assertThat(allOrders).hasSize(2);
-        assertThat(allOrders.stream().map(OrderEntity::getStatus)).contains("PENDING", "SHIPPED");
+        assertThat(allOrders.stream().map(Order::getStatus)).contains("PENDING", "SHIPPED");
     }
 
 

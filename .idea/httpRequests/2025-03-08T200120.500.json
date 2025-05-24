@@ -1,7 +1,0 @@
-{
-  "timestamp": "2025-03-09T01:01:18.755+00:00",
-  "path": "/api/products",
-  "status": 500,
-  "error": "Internal Server Error",
-  "requestId": "fd950f9b-1"
-}

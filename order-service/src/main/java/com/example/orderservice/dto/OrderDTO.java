@@ -1,8 +1,10 @@
 package com.example.orderservice.dto;
 
+import com.example.orderservice.order_products.OrderProduct;
 import lombok.Builder;
 import lombok.With;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @With
@@ -10,7 +12,6 @@ import java.util.UUID;
 public record OrderDTO(
         UUID id,
         LocalDateTime orderDate,
-        String status,
-        Double totalAmount
+        List<OrderProduct> orderProducts
 ) {
 }

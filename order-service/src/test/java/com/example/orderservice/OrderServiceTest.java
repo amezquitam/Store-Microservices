@@ -1,6 +1,9 @@
 package com.example.orderservice;
 
 import com.example.orderservice.dto.OrderDTO;
+import com.example.orderservice.order.Order;
+import com.example.orderservice.order.OrderRepository;
+import com.example.orderservice.order.OrderServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -23,7 +26,7 @@ class OrderServiceTest {
     @InjectMocks
     private OrderServiceImpl orderService; // Assume there's an implementation class `OrderServiceImpl`
 
-    private OrderEntity orderEntity;
+    private Order orderEntity;
     private OrderDTO orderDTO;
 
     @BeforeEach
@@ -36,8 +39,8 @@ class OrderServiceTest {
         String status = "PENDING";
         Double totalAmount = 100.0;
 
-        orderEntity = new OrderEntity(orderId, orderDate, status, totalAmount);
-        orderDTO = new OrderDTO(orderId, orderDate, status, totalAmount);
+        orderEntity = new Order(orderId, orderDate, status, totalAmount);
+        orderDTO = new OrderDTO(orderId, orderDate);
     }
 
     @Test
@@ -87,7 +90,7 @@ class OrderServiceTest {
     @Test
     void shouldCreateOrder_whenValidOrderIsGiven() {
         // Given
-        when(orderRepository.save(any(OrderEntity.class))).thenReturn(orderEntity);
+        when(orderRepository.save(any(Order.class))).thenReturn(orderEntity);
 
         // When
         OrderDTO result = orderService.createOrder(orderDTO);
@@ -95,7 +98,7 @@ class OrderServiceTest {
         // Then
         assertNotNull(result);
         assertEquals(orderEntity.getId(), result.id());
-        verify(orderRepository, times(1)).save(any(OrderEntity.class));
+        verify(orderRepository, times(1)).save(any(Order.class));
     }
 
     @Test
@@ -129,12 +132,12 @@ class OrderServiceTest {
     @Test
     void shouldThrowException_whenSavingOrderFails() {
         // Given
-        when(orderRepository.save(any(OrderEntity.class))).thenThrow(new RuntimeException("Database is down"));
+        when(orderRepository.save(any(Order.class))).thenThrow(new RuntimeException("Database is down"));
 
         // When / Then
         RuntimeException thrown = assertThrows(RuntimeException.class, () -> orderService.createOrder(orderDTO));
         assertEquals("Database is down", thrown.getMessage());
-        verify(orderRepository, times(1)).save(any(OrderEntity.class));
+        verify(orderRepository, times(1)).save(any(Order.class));
     }
 
     @Test

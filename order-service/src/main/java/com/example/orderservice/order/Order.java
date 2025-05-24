@@ -1,13 +1,14 @@
-package com.example.orderservice;
+package com.example.orderservice.order;
 
+import com.example.orderservice.order_products.OrderProduct;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -15,7 +16,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderEntity {
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -23,13 +24,9 @@ public class OrderEntity {
 
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime orderDate;
+    private LocalDateTime timestamp;
 
-    @NotNull
-    private String status;
-
-    @NotNull
-    @Min(0)
-    private Double totalAmount;
+    @OneToMany
+    private List<OrderProduct> orderProducts;
 
 }

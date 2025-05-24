@@ -61,5 +61,5 @@ public interface ProductService {
      *
      * @param id ID del producto a eliminar.
      */
-    Void deleteProduct(UUID id);
+    UUID deleteProduct(UUID id);
 }

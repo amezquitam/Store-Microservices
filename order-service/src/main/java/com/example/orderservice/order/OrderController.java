@@ -1,7 +1,6 @@
-package com.example.orderservice;
+package com.example.orderservice.order;
 
 import com.example.orderservice.dto.OrderDTO;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -29,13 +28,11 @@ public class OrderController {
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
     public Mono<OrderDTO> createOrder(@RequestBody OrderDTO orderDTO) {
         return Mono.just(orderService.createOrder(orderDTO));
     }
 
     @DeleteMapping("/{orderId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     public Mono<Void> deleteOrderById(@PathVariable UUID orderId) {
         return Mono.fromRunnable(() -> orderService.deleteOrderById(orderId));
     }
