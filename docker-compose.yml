@@ -166,8 +166,11 @@ services:
       SERVER_PORT: 8080
       SPRING_SECURITY_USER_PASSWORD: admin
       EUREKA_SERVER_URL: "http://eureka-server:8761/eureka/"
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
     depends_on:
       - eureka-server
+      - redis
     ports:
       - "8080:8080"
     networks:
@@ -222,6 +225,14 @@ services:
       - prometheus
     restart: unless-stopped
 
+  redis:
+    image: redis:7
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
 volumes:
   order_data:
   payment_data:
@@ -233,6 +244,7 @@ volumes:
   inventory_deps:
   keycloak_data:
   gateway_deps:
+  redis_data:
 
 networks:
   eureka-network:
