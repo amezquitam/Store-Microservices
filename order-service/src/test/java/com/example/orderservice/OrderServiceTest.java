@@ -36,9 +36,6 @@ class OrderServiceTest {
         // Sample order data
         UUID orderId = UUID.randomUUID();
         LocalDateTime orderDate = LocalDateTime.now();
-        String status = "PENDING";
-        Double totalAmount = 100.0;
-
         orderEntity = new Order(orderId, orderDate, List.of());
         orderDTO = new OrderDTO(orderId, orderDate, List.of());
     }

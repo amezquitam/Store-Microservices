@@ -27,8 +27,8 @@ import static org.assertj.core.api.Assertions.*;
 class OrderRepositoryTest {
 
     @Container
-    public static PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>("postgres:15.4-alpine").withDatabaseName("order_db").withUsername("test").withPassword("test");
-    
+    public static final PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>("postgres:15.4-alpine").withDatabaseName("order_db").withUsername("test").withPassword("test");
+
     @Autowired
     private OrderRepository orderRepository;
 
