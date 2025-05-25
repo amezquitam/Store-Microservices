@@ -165,6 +165,7 @@ services:
     environment:
       SERVER_PORT: 8080
       SPRING_SECURITY_USER_PASSWORD: admin
+      EUREKA_SERVER_URL: "http://eureka-server:8761/eureka/"
     depends_on:
       - eureka-server
     ports:

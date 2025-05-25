@@ -3,9 +3,25 @@
 spring:
   application:
     name: gateway
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/TU-REALM
   cloud:
     gateway:
-      globalcors:
+      default-filters:
+        - name: RequestRateLimiter
+          args:
+            redis-rate-limiter.replenishRate: 10
+            redis-rate-limiter.burstCapacity: 20
+        - name: Retry
+          args:
+            retries: 3
+            statuses: BAD_GATEWAY
+            methods: GET,POST
+
+      global-cors:
         cors-configurations:
           '[/**]':
             allowedOrigins: "*"
@@ -21,21 +37,54 @@ spring:
           uri: lb://product-service
           predicates:
             - Path=/api/products/**
+          filters:
+            #- name: CircuitBreaker
+              #args:
+                #name: productCircuitBreaker
+                #fallbackUri: forward:/fallback/products
+            #- name: RequestHeaderToRequestUri
+            #- name: CorrelationIdFilter
+            #- name: LoggingFilter
+            #- name: RedisCacheFilter
 
         - id: inventory-service
           uri: lb://inventory-service
           predicates:
             - Path=/api/inventories/**
+          #filters:
+            #- name: CircuitBreaker
+              #args:
+                #name: inventoryCircuitBreaker
+                #fallbackUri: forward:/fallback/inventories
 
         - id: order-service
           uri: lb://order-service
           predicates:
             - Path=/api/orders/**
+          #filters:
+            #- name: CircuitBreaker
+              #args:
+                #name: orderCircuitBreaker
+                #fallbackUri: forward:/fallback/orders
 
         - id: payment-service
           uri: lb://payment-service
           predicates:
             - Path=/api/payments/**
+          #filters:
+            #- name: CircuitBreaker
+              #args:
+                #name: paymentCircuitBreaker
+                #fallbackUri: forward:/fallback/payments
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+logging:
+  level:
+    org.springframework.cloud.netflix.eureka: DEBUG
+
 
 eureka:
   client:
