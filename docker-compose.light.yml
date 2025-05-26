@@ -180,8 +180,7 @@ services:
 
   keycloak:
     image: quay.io/keycloak/keycloak:26.0.0
-    command:
-      - "start-dev"
+    command: start-dev --import-realm
     environment:
       KC_DB: postgres
       KC_DB_URL_HOST: keycloak-postgres
@@ -193,6 +192,8 @@ services:
       KC_BOOTSTRAP_ADMIN_PASSWORD: admin
     ports:
       - "9090:8080"
+    volumes:
+      - ./keycloak/realm-export.json:/opt/keycloak/data/import/realm-export.json
     depends_on:
       - keycloak-postgres
     networks:

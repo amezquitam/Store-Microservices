@@ -1,3 +1,8 @@
+keycloak:
+  client-id: store_microservices_client
+  client-secret: "**********"
+  token-uri: http://keycloak:8080/realms/store-microservices/protocol/openid-connect/token
+
 spring:
   application:
     name: gateway
@@ -5,27 +10,14 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:9090/realms/store-microservices
-          audiences: store-client
-      client:
-        registration:
-          keycloak:
-            client-id: store_microservices_client
-            client-secret: "**********"
-            authorization-grant-type: authorization_code
-            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
-            scope: openid, profile
-        provider:
-          keycloak:
-            issuer-uri: http://localhost:9090/realms/store-microservices
-            user-name-attribute: preferred_username
+          issuer-uri: http://keycloak:8080/realms/store-microservices
   cloud:
     gateway:
       default-filters:
         - name: RequestRateLimiter
           args:
-            redis-rate-limiter.replenishRate: 10
-            redis-rate-limiter.burstCapacity: 20
+            '[redis-rate-limiter.replenishRate]': 10
+            '[redis-rate-limiter.burstCapacity]': 20
         - name: Retry
           args:
             retries: 3
@@ -33,7 +25,7 @@ spring:
             methods: GET,POST
         - TokenRelay
 
-      global-cors:
+      globalcors:
         cors-configurations:
           '[/**]':
             allowedOrigins: "*"
@@ -94,12 +86,10 @@ spring:
 
 logging:
   level:
-    org.springframework.cloud.netflix.eureka: DEBUG
-    org.springframework.security: DEBUG
-    org.springframework.security.oauth2.jwt: DEBUG
-    org.springframework.security.web.server: DEBUG
-
-
+    '[org.springframework.cloud.netflix.eureka]': DEBUG
+    '[org.springframework.security]': DEBUG
+    '[org.springframework.security.oauth2.jwt]': DEBUG
+    '[org.springframework.security.web.server]': DEBUG
 
 eureka:
   client:

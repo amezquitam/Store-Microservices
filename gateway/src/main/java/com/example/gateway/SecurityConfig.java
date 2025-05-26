@@ -2,7 +2,7 @@ package com.example.gateway;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.web.server.SecurityWebFilterChain;
@@ -11,6 +11,12 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @EnableWebFluxSecurity
 public class SecurityConfig {
 
+    private final JwtAuthenticationConverter jwtAuthenticationConverter;
+
+    SecurityConfig(JwtAuthenticationConverter jwtAuthenticationConverter) {
+        this.jwtAuthenticationConverter = jwtAuthenticationConverter;
+    }
+
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         return http
@@ -18,11 +24,18 @@ public class SecurityConfig {
                 .authorizeExchange(exchanges -> exchanges
                         .pathMatchers("/actuator/**").permitAll()
                         .pathMatchers("/eureka/**").permitAll()
+                        .pathMatchers("/auth/**").permitAll()
+                        .pathMatchers(HttpMethod.GET, "/api/**").hasAnyRole("USER", "ADMIN")
+                        .pathMatchers(HttpMethod.POST, "/api/**").hasAnyRole("USER", "ADMIN")
+                        .pathMatchers(HttpMethod.PUT, "/api/**").hasRole("ADMIN")
+                        .pathMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN")
                         .anyExchange().authenticated()
                 )
-                .oauth2Login(Customizer.withDefaults())
-                .oauth2Client(Customizer.withDefaults())
-                .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
+                .oauth2ResourceServer(
+                    oauth2 -> oauth2.jwt(
+                        jwt-> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter)
+                    )
+                )
                 .build();
     }
 }
