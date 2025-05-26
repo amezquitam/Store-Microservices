@@ -3,10 +3,22 @@ spring:
     name: gateway
   security:
     oauth2:
-      resource-server:
+      resourceserver:
         jwt:
-          issuer-uri: http://keycloak:8080/realms/store-realm
+          issuer-uri: http://localhost:9090/realms/store-microservices
           audiences: store-client
+      client:
+        registration:
+          keycloak:
+            client-id: store_microservices_client
+            client-secret: "**********"
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope: openid, profile
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:9090/realms/store-microservices
+            user-name-attribute: preferred_username
   cloud:
     gateway:
       default-filters:
@@ -19,6 +31,7 @@ spring:
             retries: 3
             statuses: BAD_GATEWAY
             methods: GET,POST
+        - TokenRelay
 
       global-cors:
         cors-configurations:
@@ -43,7 +56,6 @@ spring:
                 #fallbackUri: forward:/fallback/products
             #- name: RequestHeaderToRequestUri
             #- name: CorrelationIdFilter
-            #- name: LoggingFilter
             #- name: RedisCacheFilter
 
         - id: inventory-service
@@ -97,11 +109,9 @@ eureka:
       defaultZone: http://eureka-server:8761/eureka/
   instance:
     prefer-ip-address: true
-management:
-  endpoint:
-    gateway:
-      access: unrestricted
-  endpoints:
-    web:
-      exposure:
-        include: gateway
+
+
+management.endpoint.gateway.access: unrestricted
+management.endpoint.health.show-details: "ALWAYS"
+management.endpoints.web.exposure.include: "*"
+

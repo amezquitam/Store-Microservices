@@ -1,5 +1,4 @@
-
-FROM eclipse-temurin:17.0.5_8-jre-focal as builder
+FROM eclipse-temurin:17.0.5_8-jre-focal AS builder
 
 WORKDIR /extracted
 ADD ./target/*.jar app.jar

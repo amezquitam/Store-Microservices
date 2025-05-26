@@ -30,7 +30,7 @@ public class RedisCacheFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         String path = exchange.getRequest().getURI().getPath();
-        if (!path.startsWith("/products")) {
+        if (!path.startsWith("/api/products")) {
             return chain.filter(exchange);
         }
 

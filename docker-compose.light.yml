@@ -3,7 +3,7 @@ services:
   order-service:
     build:
       context: ./order-service
-      dockerfile: ../Dockerfile
+      dockerfile: ../light.dockerfile
     ports:
       - "8080"
     environment:
@@ -40,7 +40,7 @@ services:
   inventory-service:
     build:
       context: ./inventory-service
-      dockerfile: ../Dockerfile
+      dockerfile: ../light.dockerfile
     depends_on:
       - product-service
       - inventory-postgres
@@ -78,7 +78,7 @@ services:
   payment-service:
     build:
       context: ./payment-service
-      dockerfile: ../Dockerfile
+      dockerfile: ../light.dockerfile
     depends_on:
       - payment-postgres
       - eureka-server
@@ -115,7 +115,7 @@ services:
   product-service:
     build:
       context: ./product-service
-      dockerfile: ../Dockerfile
+      dockerfile: ../light.dockerfile
     depends_on:
       - product-mongo
       - eureka-server
@@ -151,7 +151,7 @@ services:
   eureka-server:
     build:
       context: ./eureka-server
-      dockerfile: Dockerfile
+      dockerfile: ../light.dockerfile
     container_name: eureka-server
     ports:
       - "8761:8761"
@@ -161,7 +161,7 @@ services:
   gateway:
     build:
       context: ./gateway
-      dockerfile: ../Dockerfile
+      dockerfile: ../light.dockerfile
     environment:
       SERVER_PORT: 8080
       SPRING_SECURITY_USER_PASSWORD: admin
@@ -219,7 +219,7 @@ services:
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
-      - "9091:9090"
+      - "9091:9091"
     restart: unless-stopped
 
   grafana:

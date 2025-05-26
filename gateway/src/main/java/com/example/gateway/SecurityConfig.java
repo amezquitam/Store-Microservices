@@ -16,12 +16,12 @@ public class SecurityConfig {
         return http
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .authorizeExchange(exchanges -> exchanges
-                        .pathMatchers("/api/public/**").permitAll()
-                        .pathMatchers("/api/admin/**").hasRole("ADMIN")
-                        .pathMatchers("/api/supervisor/**").hasRole("SUPERVISOR")
-                        .pathMatchers("/api/employee/**").hasRole("EMPLOYEE")
+                        .pathMatchers("/actuator/**").permitAll()
+                        .pathMatchers("/eureka/**").permitAll()
                         .anyExchange().authenticated()
                 )
+                .oauth2Login(Customizer.withDefaults())
+                .oauth2Client(Customizer.withDefaults())
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
                 .build();
     }
