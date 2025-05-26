@@ -2,6 +2,7 @@ package com.example.orderservice;
 
 import com.example.orderservice.order.Order;
 import com.example.orderservice.order.OrderRepository;
+import com.example.orderservice.order_products.OrderProduct;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -25,10 +27,7 @@ import static org.assertj.core.api.Assertions.*;
 class OrderRepositoryTest {
 
     @Container
-    public static PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>("postgres:15.4-alpine")
-            .withDatabaseName("order_db")
-            .withUsername("test")
-            .withPassword("test");
+    public static final PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>("postgres:15.4-alpine").withDatabaseName("order_db").withUsername("test").withPassword("test");
 
     @Autowired
     private OrderRepository orderRepository;
@@ -39,8 +38,6 @@ class OrderRepositoryTest {
     void setUp() {
         orderEntity = new Order();
         orderEntity.setTimestamp(LocalDateTime.now());
-        orderEntity.setStatus("PENDING");
-        orderEntity.setTotalAmount(100.0);
         orderEntity = orderRepository.save(orderEntity);
     }
 
@@ -72,8 +69,6 @@ class OrderRepositoryTest {
 
         // then
         assertThat(foundOrder).isPresent();
-        assertThat(foundOrder.get().getStatus()).isEqualTo("PENDING");
-        assertThat(foundOrder.get().getTotalAmount()).isEqualTo(100.0);
     }
 
     @Test
@@ -100,16 +95,16 @@ class OrderRepositoryTest {
     @Test
     void givenOrderEntity_whenUpdated_thenChangesArePersisted() {
         // given
-        orderEntity.setStatus("COMPLETED");
+        orderEntity.setOrderProducts(List.of(new OrderProduct(null, orderEntity, UUID.randomUUID(), 6L)));
 
         // when
         Order updatedOrder = orderRepository.save(orderEntity);
 
         // then
-        assertThat(updatedOrder.getStatus()).isEqualTo("COMPLETED");
+        assertThat(updatedOrder.getOrderProducts()).hasSize(1);
         Optional<Order> foundOrder = orderRepository.findById(orderEntity.getId());
         assertThat(foundOrder).isPresent();
-        assertThat(foundOrder.get().getStatus()).isEqualTo("COMPLETED");
+        assertThat(foundOrder.get().getOrderProducts().stream().anyMatch(product -> product.getQuantity() == 6L)).isTrue();
     }
 
     @Test
@@ -117,8 +112,6 @@ class OrderRepositoryTest {
         // given
         Order anotherOrder = new Order();
         anotherOrder.setTimestamp(LocalDateTime.now());
-        anotherOrder.setStatus("SHIPPED");
-        anotherOrder.setTotalAmount(200.0);
         orderRepository.save(anotherOrder);
 
         // when
@@ -126,7 +119,6 @@ class OrderRepositoryTest {
 
         // then
         assertThat(allOrders).hasSize(2);
-        assertThat(allOrders.stream().map(Order::getStatus)).contains("PENDING", "SHIPPED");
     }
 
 
