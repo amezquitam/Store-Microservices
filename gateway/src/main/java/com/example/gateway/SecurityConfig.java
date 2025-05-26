@@ -18,7 +18,8 @@ public class SecurityConfig {
                 .authorizeExchange(exchanges -> exchanges
                         .pathMatchers("/api/public/**").permitAll()
                         .pathMatchers("/api/admin/**").hasRole("ADMIN")
-                        .pathMatchers("/api/user/**").hasAnyRole("USER", "ADMIN")
+                        .pathMatchers("/api/supervisor/**").hasRole("SUPERVISOR")
+                        .pathMatchers("/api/employee/**").hasRole("EMPLOYEE")
                         .anyExchange().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class AuthenticationFilter implements GatewayFilterFactory<AuthenticationFilter.Config> {
+public class AuthFilter implements GatewayFilterFactory<AuthFilter.Config> {
 
     public static class Config {
         // config para roles dinamicos
