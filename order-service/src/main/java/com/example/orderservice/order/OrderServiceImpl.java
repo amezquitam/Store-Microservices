@@ -4,16 +4,11 @@ import com.example.orderservice.dto.OrderDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatusCode;
-import org.springframework.http.client.ClientHttpRequest;
-import org.springframework.http.client.ClientHttpRequestFactory;
-import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RequestCallback;
 import org.springframework.web.client.ResponseExtractor;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -74,10 +69,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private OrderDTO mapToDTO(Order orderEntity) {
-        return OrderDTO.builder()
-                .id(orderEntity.getId())
-                .orderDate(orderEntity.getTimestamp())
-                .build();
+        return new OrderDTO(orderEntity.getId(), orderEntity.getTimestamp(), orderEntity.getOrderProducts());
     }
 
     private Order mapToEntity(OrderDTO orderDTO) {

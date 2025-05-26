@@ -3,6 +3,8 @@ package com.example.orderservice;
 import com.example.orderservice.order.Order;
 import com.example.orderservice.order.OrderRepository;
 import com.example.orderservice.order_products.OrderProduct;
+import com.example.orderservice.order_products.OrderProductRepository;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,6 +17,7 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -31,6 +34,9 @@ class OrderRepositoryTest {
 
     @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    private OrderProductRepository orderProductRepository;
 
     private Order orderEntity;
 
@@ -95,9 +101,11 @@ class OrderRepositoryTest {
     @Test
     void givenOrderEntity_whenUpdated_thenChangesArePersisted() {
         // given
-        orderEntity.setOrderProducts(List.of(new OrderProduct(null, orderEntity, UUID.randomUUID(), 6L)));
-
+        OrderProduct orderProduct = new OrderProduct(orderEntity.getId(), orderEntity, UUID.randomUUID(), 6L);
+        orderProduct = orderProductRepository.save(orderProduct);
+        
         // when
+        orderEntity.setOrderProducts(new ArrayList<>(List.of(orderProduct)));
         Order updatedOrder = orderRepository.save(orderEntity);
 
         // then
