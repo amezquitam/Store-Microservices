@@ -54,7 +54,7 @@ spring:
           uri: lb://inventory-service
           predicates:
             - Path=/api/inventories/**
-          #filters:
+          filters:
             #- name: CircuitBreaker
               #args:
                 #name: inventoryCircuitBreaker

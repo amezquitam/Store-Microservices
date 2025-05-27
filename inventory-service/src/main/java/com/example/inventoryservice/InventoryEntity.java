@@ -2,7 +2,6 @@ package com.example.inventoryservice;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.util.UUID;

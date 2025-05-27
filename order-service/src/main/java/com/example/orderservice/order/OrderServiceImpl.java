@@ -1,7 +1,6 @@
 package com.example.orderservice.order;
 
 import com.example.orderservice.dto.OrderDTO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
@@ -21,7 +20,6 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final RestTemplate restTemplate;
 
-    @Autowired
     public OrderServiceImpl(OrderRepository orderRepository, RestTemplate restTemplate) {
         this.orderRepository = orderRepository;
         this.restTemplate = restTemplate;

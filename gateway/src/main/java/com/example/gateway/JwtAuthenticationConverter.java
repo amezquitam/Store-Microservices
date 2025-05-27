@@ -18,13 +18,7 @@ import reactor.core.publisher.Mono;
 public class JwtAuthenticationConverter implements Converter<Jwt, Mono<AbstractAuthenticationToken>> {
 
     @Override
-    public Mono<AbstractAuthenticationToken> convert(Jwt jwt) {
-        System.err.println("=== JWT Claims ===");
-        jwt.getClaims().forEach((k, v) -> System.err.println(k + ": " + v));
-
-        Object realmAccess = jwt.getClaim("realm_access");
-        System.err.println("realm_access: " + realmAccess);
-
+    public Mono<AbstractAuthenticationToken> convert(@SuppressWarnings("null") Jwt jwt) {
         List<String> roles = Collections.emptyList();
         Object realmAccessObj = jwt.getClaimAsMap("realm_access");
         if (realmAccessObj != null) {
