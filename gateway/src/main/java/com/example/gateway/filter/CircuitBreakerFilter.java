@@ -24,11 +24,11 @@ public class CircuitBreakerFilter implements GatewayFilter, Ordered {
 
     public CircuitBreakerFilter() {
         CircuitBreakerConfig config = CircuitBreakerConfig.custom()
-                .failureRateThreshold(50)                 // Porcentaje de fallos para abrir el circuito
-                .waitDurationInOpenState(Duration.ofMillis(10000))  // Tiempo en estado abierto
-                .slidingWindowSize(10)                    // Tamaño de la ventana deslizante
-                .permittedNumberOfCallsInHalfOpenState(5) // Llamadas permitidas en estado semi-abierto
-                .recordExceptions(Exception.class)        // Excepciones a registrar
+                .failureRateThreshold(50)
+                .waitDurationInOpenState(Duration.ofMillis(10000))
+                .slidingWindowSize(10)
+                .permittedNumberOfCallsInHalfOpenState(5)
+                .recordExceptions(Exception.class)
                 .build();
 
         CircuitBreakerRegistry registry = CircuitBreakerRegistry.of(config);

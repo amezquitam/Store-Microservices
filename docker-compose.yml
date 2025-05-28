@@ -176,6 +176,7 @@ services:
       - order-service
       - inventory-service
       - zipkin
+      - loki
     ports:
       - "8080:8080"
     networks:
@@ -257,7 +258,7 @@ services:
     container_name: loki
     command: -config.file=/etc/loki/local-config.yaml
     networks:
-      - default
+      - eureka-network
     volumes:
       - loki_data:/loki
     restart: unless-stopped

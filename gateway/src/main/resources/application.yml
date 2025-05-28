@@ -46,8 +46,6 @@ spring:
               args:
                 name: productCircuitBreaker
                 fallbackUri: forward:/fallback/products
-            - name: CorrelationIdFilter
-            - name: RedisCacheFilter
 
         - id: inventory-service
           uri: lb://inventory-service
@@ -58,7 +56,7 @@ spring:
               args:
                 name: inventoryCircuitBreaker
                 fallbackUri: forward:/fallback/inventories
-            - name: CorrelationIdFilter
+
 
         - id: order-service
           uri: lb://order-service
@@ -69,7 +67,7 @@ spring:
               args:
                 name: orderCircuitBreaker
                 fallbackUri: forward:/fallback/orders
-            - name: CorrelationIdFilter
+
 
         - id: payment-service
           uri: lb://payment-service
@@ -80,7 +78,6 @@ spring:
               args:
                 name: paymentCircuitBreaker
                 fallbackUri: forward:/fallback/payments
-            - name: CorrelationIdFilter
   data:
     redis:
       host: ${REDIS_HOST:redis}
@@ -88,6 +85,7 @@ spring:
 logging:
   loki:
     url: http://loki:3100/loki/api/push
+
 
 resilience4j:
   circuitbreaker:
