@@ -226,6 +226,8 @@ services:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9091:9090"
+    networks:
+      - eureka-network
     restart: unless-stopped
 
   grafana:
@@ -235,6 +237,8 @@ services:
       - "3000:3000"
     depends_on:
       - prometheus
+    networks:
+      - eureka-network
     restart: unless-stopped
 
   redis:
@@ -249,6 +253,8 @@ services:
   zipkin:
     image: openzipkin/zipkin
     container_name: zipkin
+    ports:
+      - "9411:9411"
     networks:
       - eureka-network
     restart: unless-stopped
@@ -257,6 +263,8 @@ services:
     image: grafana/loki:2.9.2
     container_name: loki
     command: -config.file=/etc/loki/local-config.yaml
+    ports:
+      - "3100:3100"
     networks:
       - eureka-network
     volumes:

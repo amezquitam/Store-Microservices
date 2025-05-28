@@ -90,7 +90,7 @@ class OrderServiceTest {
         when(orderRepository.save(any(Order.class))).thenReturn(orderEntity);
 
         // When
-        OrderDTO result = orderService.createOrder(orderDTO);
+        OrderDTO result = orderService.createOrder(orderDTO).block();
 
         // Then
         assertNotNull(result);
