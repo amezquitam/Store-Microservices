@@ -1,6 +1,8 @@
 package com.example.orderservice.order;
 
 import com.example.orderservice.dto.OrderDTO;
+
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -28,8 +30,11 @@ public class OrderController {
     }
 
     @PostMapping
-    public Mono<OrderDTO> createOrder(@RequestBody OrderDTO orderDTO) {
-        return Mono.just(orderService.createOrder(orderDTO));
+    public Mono<OrderDTO> createOrder(
+            @RequestBody OrderDTO orderDTO,
+            @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
+        orderService.setToken(token);
+        return orderService.createOrder(orderDTO);
     }
 
     @DeleteMapping("/{orderId}")
