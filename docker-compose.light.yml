@@ -193,7 +193,7 @@ services:
     ports:
       - "9090:8080"
     volumes:
-      - ./keycloak/realm-export.json:/opt/keycloak/data/import/realm-export.json
+      - ./keycloak/store-microservices-realms.json:/opt/keycloak/data/import/store-microservices-realms.json
     depends_on:
       - keycloak-postgres
     networks:

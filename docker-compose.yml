@@ -187,7 +187,8 @@ services:
   keycloak:
     image: quay.io/keycloak/keycloak:26.0.0
     command:
-      - "start-dev"
+      - start-dev
+      - --import-realm
     environment:
       KC_DB: postgres
       KC_DB_URL_HOST: keycloak-postgres
@@ -203,6 +204,8 @@ services:
       - keycloak-postgres
     networks:
       - eureka-network
+    volumes:
+      - ./store-microservices-realms.json:/opt/keycloak/data/import/store-microservices-realms.json
 
   keycloak-postgres:
     image: postgres:15.4-alpine
