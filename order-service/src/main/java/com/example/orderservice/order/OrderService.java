@@ -2,6 +2,8 @@ package com.example.orderservice.order;
 
 import com.example.orderservice.dto.OrderDTO;
 
+import reactor.core.publisher.Mono;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -12,7 +14,9 @@ public interface OrderService {
 
     Optional<OrderDTO> getOrderById(UUID orderId);
 
-    OrderDTO createOrder(OrderDTO order);
+    Mono<OrderDTO> createOrder(OrderDTO order);
 
     void deleteOrderById(UUID orderId);
+
+    void setToken(String token);
 }

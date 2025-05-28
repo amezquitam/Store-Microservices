@@ -1,14 +1,15 @@
 package com.example.orderservice.order;
 
 import com.example.orderservice.dto.OrderDTO;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.ResponseExtractor;
-import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestTemplate;
+import com.example.orderservice.order_products.OrderProduct;
 
-import java.net.URI;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+import org.springframework.http.HttpHeaders;
+import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -18,11 +19,15 @@ import java.util.stream.Collectors;
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
-    private final RestTemplate restTemplate;
+    private final WebClient webClient;
 
-    public OrderServiceImpl(OrderRepository orderRepository, RestTemplate restTemplate) {
+    private String token;
+
+    public OrderServiceImpl(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
-        this.restTemplate = restTemplate;
+        this.webClient = WebClient.builder()
+            .baseUrl("http://inventory-service:8080/api/inventories/")
+            .build();
     }
 
     @Override
@@ -40,22 +45,26 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderDTO createOrder(OrderDTO orderDTO) {
+    public Mono<OrderDTO> createOrder(OrderDTO orderDTO) {
         Order orderEntity = mapToEntity(orderDTO);
-        orderEntity.getOrderProducts().forEach(product -> {
-            URI uri = URI.create("lb://inventory-service/api/inventory/" + product.getProductId() +
-                    "/decrement?amount=" + product.getQuantity());
 
-            ResponseExtractor<Boolean> responseExtractor = (response) ->
-                response.getStatusCode() == HttpStatusCode.valueOf(200);
-            try {
-                restTemplate.execute(uri, HttpMethod.PATCH, null, responseExtractor);
-            } catch (RestClientException ex) {
-                throw new RuntimeException("from inventory:" + ex.getMessage());
-            }
-        });
-        Order savedOrder = orderRepository.save(orderEntity);
-        return mapToDTO(savedOrder);
+        return Flux.fromIterable(orderDTO.orderProducts())
+            .flatMap((OrderProduct product) -> {
+                return webClient.patch()
+                    .uri(product.getId() + "/decrement")
+                    .header(HttpHeaders.AUTHORIZATION, token)
+                    .retrieve()
+                    .bodyToMono(String.class);
+                }
+            )
+            .all(response -> response.contains("successfull"))
+            .flatMap(allSuccessful -> {
+                if (!allSuccessful) {
+                    return Mono.error(new RuntimeException("Error al decrementar inventario"));
+                }
+                return Mono.fromCallable(() -> orderRepository.save(orderEntity))
+                        .map(this::mapToDTO);
+            });
     }
 
     @Override
@@ -77,4 +86,11 @@ public class OrderServiceImpl implements OrderService {
                 orderDTO.orderProducts()
         );
     }
+
+    @Override
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    
 }
