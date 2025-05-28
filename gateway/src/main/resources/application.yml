@@ -42,54 +42,87 @@ spring:
           predicates:
             - Path=/api/products/**
           filters:
-            #- name: CircuitBreaker
-              #args:
-                #name: productCircuitBreaker
-                #fallbackUri: forward:/fallback/products
-            #- name: RequestHeaderToRequestUri
-            #- name: CorrelationIdFilter
-            #- name: RedisCacheFilter
+            - name: CircuitBreaker
+              args:
+                name: productCircuitBreaker
+                fallbackUri: forward:/fallback/products
+            - name: CorrelationIdFilter
+            - name: RedisCacheFilter
 
         - id: inventory-service
           uri: lb://inventory-service
           predicates:
             - Path=/api/inventories/**
           filters:
-            #- name: CircuitBreaker
-              #args:
-                #name: inventoryCircuitBreaker
-                #fallbackUri: forward:/fallback/inventories
+            - name: CircuitBreaker
+              args:
+                name: inventoryCircuitBreaker
+                fallbackUri: forward:/fallback/inventories
+            - name: CorrelationIdFilter
 
         - id: order-service
           uri: lb://order-service
           predicates:
             - Path=/api/orders/**
-          #filters:
-            #- name: CircuitBreaker
-              #args:
-                #name: orderCircuitBreaker
-                #fallbackUri: forward:/fallback/orders
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: orderCircuitBreaker
+                fallbackUri: forward:/fallback/orders
+            - name: CorrelationIdFilter
 
         - id: payment-service
           uri: lb://payment-service
           predicates:
             - Path=/api/payments/**
-          #filters:
-            #- name: CircuitBreaker
-              #args:
-                #name: paymentCircuitBreaker
-                #fallbackUri: forward:/fallback/payments
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: paymentCircuitBreaker
+                fallbackUri: forward:/fallback/payments
+            - name: CorrelationIdFilter
   data:
     redis:
-      host: ${REDIS_HOST:localhost}
-      port: ${REDIS_PORT:6379}
+      host: ${REDIS_HOST:redis}
 
 logging:
-  level:
-    '[org.springframework.cloud.netflix.eureka]': DEBUG
-    '[org.springframework.security]': DEBUG
-    '[org.springframework.security.oauth2.jwt]': DEBUG
-    '[org.springframework.security.web.server]': DEBUG
+  loki:
+    url: http://loki:3100/loki/api/push
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      productCircuitBreaker:
+        registerHealthIndicator: true
+        slidingWindowSize: 5
+        minimumNumberOfCalls: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 6s
+        permittedNumberOfCallsInHalfOpenState: 2
+
+      orderCircuitBreaker:
+        registerHealthIndicator: true
+        slidingWindowSize: 5
+        minimumNumberOfCalls: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 6s
+        permittedNumberOfCallsInHalfOpenState: 2
+
+      paymentCircuitBreaker:
+        registerHealthIndicator: true
+        slidingWindowSize: 5
+        minimumNumberOfCalls: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 6s
+        permittedNumberOfCallsInHalfOpenState: 2
+
+      inventoryCircuitBreaker:
+        registerHealthIndicator: true
+        slidingWindowSize: 5
+        minimumNumberOfCalls: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 6s
+        permittedNumberOfCallsInHalfOpenState: 2
 
 eureka:
   client:
@@ -100,8 +133,20 @@ eureka:
   instance:
     prefer-ip-address: true
 
+management:
+  endpoint:
+    prometheus:
+      access: unrestricted
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus,threaddump,logfile,traces
+  tracing:
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/spans
 
 management.endpoint.gateway.access: unrestricted
 management.endpoint.health.show-details: "ALWAYS"
-management.endpoints.web.exposure.include: "*"
-

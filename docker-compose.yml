@@ -171,6 +171,11 @@ services:
     depends_on:
       - eureka-server
       - redis
+      - payment-service
+      - product-service
+      - order-service
+      - inventory-service
+      - zipkin
     ports:
       - "8080:8080"
     networks:
@@ -211,7 +216,7 @@ services:
       - keycloak_data:/var/lib/postgresql/data
     networks:
       - eureka-network
-
+    restart: unless-stopped
 
   prometheus:
     image: prom/prometheus
@@ -240,6 +245,22 @@ services:
       - redis_data:/data
     networks:
       - eureka-network
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    networks:
+      - eureka-network
+    restart: unless-stopped
+
+  loki:
+    image: grafana/loki:2.9.2
+    container_name: loki
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - default
+    volumes:
+      - loki_data:/loki
+    restart: unless-stopped
 
 volumes:
   order_data:
@@ -253,6 +274,7 @@ volumes:
   keycloak_data:
   gateway_deps:
   redis_data:
+  loki_data:
 
 networks:
   eureka-network:

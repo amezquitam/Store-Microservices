@@ -1,4 +1,4 @@
-package com.example.gateway;
+package com.example.gateway.filter;
 
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.GatewayFilterFactory;
@@ -30,7 +30,7 @@ public class AuthFilter implements GatewayFilterFactory<AuthFilter.Config> {
             Jwt jwt = (Jwt) authentication.getPrincipal();
             List<String> roles = jwt.getClaimAsStringList("realm_access.roles");
 
-            if (roles == null || !roles.contains("admin")) {
+            if (roles == null || !roles.contains("ADMIN")) {
                 exchange.getResponse().setStatusCode(HttpStatus.FORBIDDEN);
                 return exchange.getResponse().setComplete();
             }
