@@ -1,30 +1,25 @@
 package com.example.gateway.config;
 
-import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.cache.RedisCacheConfiguration;
-import org.springframework.data.redis.cache.RedisCacheManager;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.connection.ReactiveRedisConnectionFactory;
+import org.springframework.data.redis.core.ReactiveRedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
-
-import java.time.Duration;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
-@EnableCaching
 public class CacheConfig {
-    @Bean
-    public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
-        RedisCacheConfiguration cacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofMinutes(10))
-                .serializeValuesWith(
-                        RedisSerializationContext.SerializationPair.fromSerializer(
-                                new GenericJackson2JsonRedisSerializer()));
 
-        return RedisCacheManager.builder(redisConnectionFactory)
-                .cacheDefaults(cacheConfiguration)
-                .build();
+    @Bean(name = "reactiveRedisTemplate")
+    public ReactiveRedisTemplate<String, String> reactiveRedisTemplate(ReactiveRedisConnectionFactory connectionFactory) {
+        return new ReactiveRedisTemplate<>(
+                connectionFactory,
+                RedisSerializationContext.<String, String>newSerializationContext(new StringRedisSerializer())
+                        .key(new StringRedisSerializer())
+                        .value(new StringRedisSerializer())
+                        .hashKey(new StringRedisSerializer())
+                        .hashValue(new StringRedisSerializer())
+                        .build()
+        );
     }
 }

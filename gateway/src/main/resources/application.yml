@@ -48,6 +48,10 @@ spring:
               args:
                 name: productCircuitBreaker
                 fallbackUri: forward:/fallback/products
+            - name: RedisCaching
+              args:
+                ttlMinutes: 5
+            - name: CorrelationId
 
         - id: inventory-service
           uri: lb://inventory-service
@@ -58,6 +62,7 @@ spring:
               args:
                 name: inventoryCircuitBreaker
                 fallbackUri: forward:/fallback/inventories
+            - name: CorrelationId
 
 
         - id: order-service
@@ -69,6 +74,7 @@ spring:
               args:
                 name: orderCircuitBreaker
                 fallbackUri: forward:/fallback/orders
+            - name: CorrelationId
 
 
         - id: payment-service
@@ -80,9 +86,10 @@ spring:
               args:
                 name: paymentCircuitBreaker
                 fallbackUri: forward:/fallback/payments
+            - name: CorrelationId
   data:
     redis:
-      host: ${REDIS_HOST:redis}
+      host: redis-cache
 
 logging:
   loki:

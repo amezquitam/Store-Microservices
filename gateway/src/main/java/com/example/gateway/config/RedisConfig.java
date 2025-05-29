@@ -13,7 +13,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
 public class RedisConfig {
-    @Bean
+    @Bean(name = "objectReactiveRedisTemplate")
     public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate(
             ReactiveRedisConnectionFactory connectionFactory) {
 

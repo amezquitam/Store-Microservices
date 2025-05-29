@@ -1,6 +1,6 @@
 package com.example.gateway.filter;
 
-import com.example.gateway.RedisCacheService;
+import com.example.gateway.components.ReactiveCacheManager;
 import org.reactivestreams.Publisher;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
@@ -22,12 +22,12 @@ import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 
 @Component
-public class RedisCacheFilter implements GatewayFilter, Ordered {
+public class CachingFilter implements GatewayFilter, Ordered {
 
-    private final RedisCacheService cacheService;
+    private final ReactiveCacheManager cacheManager;
 
-    public RedisCacheFilter(RedisCacheService cacheService) {
-        this.cacheService = cacheService;
+    public CachingFilter(ReactiveCacheManager  cacheManager) {
+        this.cacheManager = cacheManager;
     }
 
     private static final Duration TTL = Duration.ofMinutes(5);
@@ -36,15 +36,16 @@ public class RedisCacheFilter implements GatewayFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
 
-
+        // Solo cacheamos GETs
         if (!HttpMethod.GET.equals(request.getMethod())) {
             return chain.filter(exchange);
         }
 
         String cacheKey = "CACHE::" + request.getURI().toString();
 
-        return cacheService.get(cacheKey)
+        return cacheManager.get(cacheKey)
                 .flatMap(cachedBody -> {
+                    // Si hay respuesta cacheada, devolverla directamente
                     byte[] bytes = cachedBody.getBytes(StandardCharsets.UTF_8);
                     DataBuffer buffer = exchange.getResponse().bufferFactory().wrap(bytes);
                     exchange.getResponse().getHeaders().setContentType(MediaType.APPLICATION_JSON);
@@ -66,9 +67,10 @@ public class RedisCacheFilter implements GatewayFilter, Ordered {
                                             dataBuffer.read(content);
                                             DataBufferUtils.release(dataBuffer);
 
+                                            // Cacheamos la respuesta
                                             String bodyStr = new String(content, StandardCharsets.UTF_8);
-                                            cacheService.set(cacheKey, bodyStr, TTL).subscribe();
 
+                                            cacheManager.set(cacheKey, bodyStr, TTL).subscribe();
                                             return bufferFactory.wrap(content);
                                         })
                                 );
@@ -87,4 +89,3 @@ public class RedisCacheFilter implements GatewayFilter, Ordered {
         return -2;
     }
 }
-
