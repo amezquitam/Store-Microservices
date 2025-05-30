@@ -1,10 +1,10 @@
-FROM eclipse-temurin:17-jdk-alpine AS builder
+FROM eclipse-temurin:17.0.5_8-jre-focal AS builder
 
 WORKDIR /extracted
 ADD ./target/*.jar app.jar
 RUN java -Djarmode=layertools -jar app.jar extract
 
-FROM eclipse-temurin:17-jdk-alpine
+FROM eclipse-temurin:17.0.5_8-jre-focal
 
 WORKDIR /application
 COPY --from=builder /extracted/dependencies/ ./
