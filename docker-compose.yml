@@ -19,7 +19,7 @@ services:
     networks:
       - eureka-network
     deploy:
-      replicas: 1
+      replicas: 3
     volumes:
       - order_deps:/root/.m2
 
@@ -57,7 +57,7 @@ services:
     networks:
       - eureka-network
     deploy:
-      replicas: 1
+      replicas: 3
     volumes:
       - inventory_deps:/root/.m2
 
@@ -94,7 +94,7 @@ services:
     networks:
       - eureka-network
     deploy:
-      replicas: 1
+      replicas: 3
     volumes:
       - payment_deps:/root/.m2
 
@@ -131,7 +131,7 @@ services:
     networks:
       - eureka-network
     deploy:
-      replicas: 1
+      replicas: 3
     volumes:
       - product_deps:/root/.m2
 
