@@ -8,7 +8,7 @@ build_service() {
   cd "$service_dir" || exit 1
   mvn package -DskipTests
   cd ..
-  docker-compose -f docker-compose.light.yml up -d --build "$service_dir"
+  #docker-compose -f docker-compose.light.yml up -d --build "$service_dir"
 }
 
 # Verifica si se proporcionó un argumento
