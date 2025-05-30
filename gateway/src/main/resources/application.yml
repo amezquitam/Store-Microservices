@@ -48,9 +48,6 @@ spring:
               args:
                 name: productCircuitBreaker
                 fallbackUri: forward:/fallback/products
-            - name: RedisCaching
-              args:
-                ttlMinutes: 5
             - name: CorrelationId
 
         - id: inventory-service
@@ -94,6 +91,9 @@ spring:
 logging:
   loki:
     url: http://loki:3100/loki/api/v1/push
+  level:
+    root: INFO
+    com.example.gateway.filter: DEBUG
 
 resilience4j:
   circuitbreaker:

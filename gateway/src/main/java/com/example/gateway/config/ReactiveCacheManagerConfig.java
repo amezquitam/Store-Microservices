@@ -17,8 +17,15 @@ public class ReactiveCacheManagerConfig {
         return new ReactiveCacheManager() {
             @Override
             public Mono<String> get(String key) {
-                return redisTemplate.opsForValue().get(key);
+                return redisTemplate.opsForValue().get(key)
+                        .flatMap(value -> {
+                            if (value == null || value.isEmpty()) {
+                                return Mono.empty();
+                            }
+                            return Mono.just(value);
+                        });
             }
+
 
             @Override
             public Mono<Boolean> set(String key, String value, Duration ttl) {
