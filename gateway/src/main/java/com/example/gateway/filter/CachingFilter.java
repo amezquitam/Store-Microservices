@@ -32,7 +32,7 @@ public class CachingFilter implements GatewayFilter, Ordered {
         this.cacheManager = cacheManager;
     }
 
-    private static final Duration TTL = Duration.ofMinutes(5);
+    private static final Duration TTL = Duration.ofMinutes(30);
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -49,7 +49,7 @@ public class CachingFilter implements GatewayFilter, Ordered {
 
         // Construir clave de caché
         String cacheKey = "CACHE::" + normalizedUri;
-
+        log.info("➡️ Checking cache for key: {}", cacheKey);
         // Si se modificó la URI, construimos nuevo request
         ServerHttpRequest normalizedRequest = request;
         if (request.getPath().value().endsWith("/")) {
@@ -59,15 +59,23 @@ public class CachingFilter implements GatewayFilter, Ordered {
         }
 
         ServerWebExchange mutatedExchange = exchange.mutate().request(normalizedRequest).build();
-
+        log.info("➡️ Entrando en el filtro de caché para {}", cacheKey);
         return cacheManager.get(cacheKey)
+                .doOnNext(value -> log.info("🔍 Valor recuperado del cache: {}", value))
                 .flatMap(cachedBody -> {
+                    log.info("✅ Cache HIT para {}", cacheKey);
                     byte[] bytes = cachedBody.getBytes(StandardCharsets.UTF_8);
                     DataBuffer buffer = exchange.getResponse().bufferFactory().wrap(bytes);
+                    exchange.getResponse().getHeaders().add("X-Cache", "HIT");
                     exchange.getResponse().getHeaders().setContentType(MediaType.APPLICATION_JSON);
                     return exchange.getResponse().writeWith(Mono.just(buffer));
                 })
                 .switchIfEmpty(Mono.defer(() -> {
+                    if (exchange.getResponse().isCommitted()) {
+                        log.warn("⚠️ Intento de cache MISS después de una respuesta ya enviada (committed)");
+                        return Mono.empty();
+                    }
+                    log.info("🚫 Cache MISS para {}", cacheKey);
                     ServerHttpResponse originalResponse = exchange.getResponse();
                     DataBufferFactory bufferFactory = originalResponse.bufferFactory();
 
@@ -75,16 +83,18 @@ public class CachingFilter implements GatewayFilter, Ordered {
                         @Override
                         public Mono<Void> writeWith(Publisher<? extends DataBuffer> body) {
                             if (body instanceof Flux) {
+                                log.info("📝 Caching full response for key: {}", cacheKey);
                                 return DataBufferUtils.join(body)
                                         .flatMap(dataBuffer -> {
                                             byte[] content = new byte[dataBuffer.readableByteCount()];
                                             dataBuffer.read(content);
                                             DataBufferUtils.release(dataBuffer);
-
                                             String bodyStr = new String(content, StandardCharsets.UTF_8);
+                                            this.getHeaders().add("X-Cache", "MISS");
                                             return cacheManager.set(cacheKey, bodyStr, TTL)
                                                     .then(Mono.defer(() -> {
                                                         DataBuffer buffer = bufferFactory.wrap(content);
+                                                        log.info("Guardando en caché con clave {}", cacheKey);
                                                         return super.writeWith(Mono.just(buffer));
                                                     }));
                                         });

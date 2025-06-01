@@ -3,44 +3,37 @@ package com.example.gateway.filter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
-import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
+import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+import org.springframework.core.Ordered;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Mono;
 
 import java.util.stream.Collectors;
 
 @Component
-public class LoggingFilter extends AbstractGatewayFilterFactory<LoggingFilter.Config> {
-    private static final Logger logger = LoggerFactory.getLogger(LoggingFilter.class.getName());
+public class LoggingFilter implements GatewayFilter, Ordered {
 
-    public static class Config {
-        private String serviceName;
+    private static final Logger logger = LoggerFactory.getLogger(LoggingFilter.class);
 
-        public String getServiceName() { return serviceName; }
-        public void setServiceName(String serviceName) { this.serviceName = serviceName; }
-    }
+    @Override
+    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+        ServerHttpRequest request = exchange.getRequest();
 
-    public LoggingFilter() {
-        super(Config.class);
+        String path = request.getURI().getPath();
+        String queryParams = request.getQueryParams().entrySet().stream()
+                .map(entry -> "%s=[%s]".formatted(entry.getKey(), String.join(",", entry.getValue())))
+                .collect(Collectors.joining("; ", "{", "}"));
+
+        logger.info("📥 Solicitud recibida: [{}] {}", queryParams, path);
+
+        return chain.filter(exchange)
+                .doOnSuccess(aVoid -> logger.info("📤 Respuesta enviada para: [{}] {}", queryParams, path));
     }
 
     @Override
-    public GatewayFilter apply(Config config) {
-        return (exchange, chain) -> {
-
-            String path = exchange.getRequest().getURI().getPath();
-            String method = exchange.getRequest().getQueryParams()
-                    .entrySet()
-                    .stream()
-                    .map(en -> "%s: [%s]".formatted(
-                            en.getKey(),
-                            String.join(",", en.getValue())
-                    ))
-                    .collect(Collectors.joining("; ", "{", "}"));
-
-            logger.info("Solicitud recibida: [{}] {}", method, path);
-
-            return chain.filter(exchange)
-                    .doOnSuccess(aVoid -> logger.info("Respuesta para: [{}] {}", method, path));
-        };
+    public int getOrder() {
+        return -4; // Puedes ajustar el orden si lo necesitas
     }
 }

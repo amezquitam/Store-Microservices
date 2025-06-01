@@ -43,47 +43,21 @@ spring:
           uri: lb://product-service
           predicates:
             - Path=/api/products/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: productCircuitBreaker
-                fallbackUri: forward:/fallback/products
-            - name: CorrelationId
 
         - id: inventory-service
           uri: lb://inventory-service
           predicates:
             - Path=/api/inventories/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: inventoryCircuitBreaker
-                fallbackUri: forward:/fallback/inventories
-            - name: CorrelationId
-
 
         - id: order-service
           uri: lb://order-service
           predicates:
             - Path=/api/orders/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: orderCircuitBreaker
-                fallbackUri: forward:/fallback/orders
-            - name: CorrelationId
-
 
         - id: payment-service
           uri: lb://payment-service
           predicates:
             - Path=/api/payments/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: paymentCircuitBreaker
-                fallbackUri: forward:/fallback/payments
-            - name: CorrelationId
   data:
     redis:
       host: redis-cache
