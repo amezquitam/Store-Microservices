@@ -205,7 +205,7 @@ services:
     networks:
       - eureka-network
     volumes:
-      - ./store-microservices-realms.json:/opt/keycloak/data/import/store-microservices-realms.json
+      -  ./store-microservices-realm.json:/opt/keycloak/data/import/store-microservices-realm.json
 
   keycloak-postgres:
     image: postgres:15.4-alpine

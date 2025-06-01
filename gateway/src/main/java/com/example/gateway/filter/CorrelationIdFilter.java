@@ -43,6 +43,6 @@ public class CorrelationIdFilter implements GatewayFilter, Ordered {
 
     @Override
     public int getOrder() {
-        return -5; // Ajusta la prioridad si es necesario
+        return -6; // Ajusta la prioridad si es necesario
     }
 }

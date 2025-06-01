@@ -5,7 +5,7 @@
   "defaultSignatureAlgorithm" : "RS256",
   "revokeRefreshToken" : false,
   "refreshTokenMaxReuse" : 0,
-  "accessTokenLifespan" : 300,
+  "accessTokenLifespan" : 1800,
   "accessTokenLifespanForImplicitFlow" : 900,
   "ssoSessionIdleTimeout" : 1800,
   "ssoSessionMaxLifespan" : 36000,
@@ -49,6 +49,14 @@
       "id" : "406506b4-edbf-4f22-8fab-21c898f9f877",
       "name" : "ADMIN",
       "description" : "Admin user",
+      "composite" : false,
+      "clientRole" : false,
+      "containerId" : "dcd551bf-4399-4c83-be69-b19c357943af",
+      "attributes" : { }
+    }, {
+      "id" : "2aac2ce8-5337-431d-9e5b-1fc9b11ac2db",
+      "name" : "SUPERVISOR",
+      "description" : "",
       "composite" : false,
       "clientRole" : false,
       "containerId" : "dcd551bf-4399-4c83-be69-b19c357943af",
@@ -413,8 +421,8 @@
       "id" : "58855a7d-41fa-4c26-aff0-74cd3b54a712",
       "type" : "password",
       "userLabel" : "My password",
-      "createdDate" : 1748441937680,
-      "secretData" : "{\"value\":\"r7w9zhyRKBnBhCMW48Rk4598CvMrV4TEP4Er6y1QSqE=\",\"salt\":\"dnFK0MAHEQII92R3dkzipg==\",\"additionalParameters\":{}}",
+      "createdDate" : 1748732089844,
+      "secretData" : "{\"value\":\"dXsrPmigG96mQtKahq5EArI3ojU0n8HDRo8MvD4Fbfc=\",\"salt\":\"piiAvJQYhHX3G419yCCUqA==\",\"additionalParameters\":{}}",
       "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
     } ],
     "disableableCredentialTypes" : [ ],
@@ -440,6 +448,29 @@
     "notBefore" : 0,
     "groups" : [ ]
   }, {
+    "id" : "c111da80-cb9c-4b25-9a7f-5548baed45d5",
+    "username" : "supervisor",
+    "firstName" : "Mango",
+    "lastName" : "ConQueso",
+    "email" : "supervisor@store.com",
+    "emailVerified" : false,
+    "createdTimestamp" : 1748748060665,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "33d8a31f-f24d-4274-b16f-b3eea99cfdf7",
+      "type" : "password",
+      "userLabel" : "My password",
+      "createdDate" : 1748748069439,
+      "secretData" : "{\"value\":\"/ZoJy+80zqkbG4fbW+HWO36CSkCkI5GS2R4N+CIJYtI=\",\"salt\":\"u3oRPWf8cZcHxGK0J1CrGQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "SUPERVISOR", "default-roles-store-microservices" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
     "id" : "1a27de83-3c35-435e-8034-ea14c5218439",
     "username" : "user",
     "firstName" : "Miguel",
@@ -453,8 +484,8 @@
       "id" : "437e3a47-c1f1-4771-9c53-9a790efe4de7",
       "type" : "password",
       "userLabel" : "My password",
-      "createdDate" : 1748441974989,
-      "secretData" : "{\"value\":\"GzA8dzWuRGg+0WJm626ZxprKzmIXySK0WRHTC5+07I0=\",\"salt\":\"RCQ/bqXkvhs9uMLTXGnpVA==\",\"additionalParameters\":{}}",
+      "createdDate" : 1748744849096,
+      "secretData" : "{\"value\":\"RyOMVDe/9emS14+sy+7+JQo7cHStcFi7IT7bRXFNBhY=\",\"salt\":\"Lth5BCeJlg1e6tdxBzJL1g==\",\"additionalParameters\":{}}",
       "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
     } ],
     "disableableCredentialTypes" : [ ],
@@ -1416,7 +1447,7 @@
       "subType" : "anonymous",
       "subComponents" : { },
       "config" : {
-        "allowed-protocol-mapper-types" : [ "saml-user-property-mapper", "oidc-address-mapper", "oidc-usermodel-property-mapper", "oidc-sha256-pairwise-sub-mapper", "saml-user-attribute-mapper", "saml-role-list-mapper", "oidc-usermodel-attribute-mapper", "oidc-full-name-mapper" ]
+        "allowed-protocol-mapper-types" : [ "saml-user-attribute-mapper", "oidc-usermodel-property-mapper", "saml-role-list-mapper", "saml-user-property-mapper", "oidc-sha256-pairwise-sub-mapper", "oidc-full-name-mapper", "oidc-usermodel-attribute-mapper", "oidc-address-mapper" ]
       }
     }, {
       "id" : "6b1707ad-e341-428b-8a6f-e52e853b1325",
@@ -1444,7 +1475,7 @@
       "subType" : "authenticated",
       "subComponents" : { },
       "config" : {
-        "allowed-protocol-mapper-types" : [ "oidc-usermodel-property-mapper", "saml-role-list-mapper", "oidc-sha256-pairwise-sub-mapper", "saml-user-attribute-mapper", "oidc-full-name-mapper", "saml-user-property-mapper", "oidc-address-mapper", "oidc-usermodel-attribute-mapper" ]
+        "allowed-protocol-mapper-types" : [ "oidc-usermodel-property-mapper", "saml-role-list-mapper", "oidc-full-name-mapper", "saml-user-attribute-mapper", "oidc-usermodel-attribute-mapper", "saml-user-property-mapper", "oidc-address-mapper", "oidc-sha256-pairwise-sub-mapper" ]
       }
     } ],
     "org.keycloak.keys.KeyProvider" : [ {
@@ -2122,14 +2153,19 @@
     "clientOfflineSessionMaxLifespan" : "0",
     "oauth2DevicePollingInterval" : "5",
     "clientSessionIdleTimeout" : "0",
+    "actionTokenGeneratedByUserLifespan.verify-email" : "",
+    "actionTokenGeneratedByUserLifespan.idp-verify-account-via-email" : "",
     "clientOfflineSessionIdleTimeout" : "0",
+    "actionTokenGeneratedByUserLifespan.execute-actions" : "",
     "cibaInterval" : "5",
     "realmReusableOtpCode" : "false",
     "cibaExpiresIn" : "120",
     "oauth2DeviceCodeLifespan" : "600",
     "parRequestUriLifespan" : "60",
     "clientSessionMaxLifespan" : "0",
-    "organizationsEnabled" : "false"
+    "organizationsEnabled" : "false",
+    "shortVerificationUri" : "",
+    "actionTokenGeneratedByUserLifespan.reset-credentials" : ""
   },
   "keycloakVersion" : "26.0.0",
   "userManagedAccessAllowed" : false,

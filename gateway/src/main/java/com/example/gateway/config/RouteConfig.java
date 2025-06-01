@@ -1,9 +1,6 @@
 package com.example.gateway.config;
 
-import com.example.gateway.filter.CachingFilter;
-import com.example.gateway.filter.CorrelationIdFilter;
-import com.example.gateway.filter.LoggingFilter;
-import com.example.gateway.filter.CircuitBreakerFilter;
+import com.example.gateway.filter.*;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
@@ -17,15 +14,20 @@ public class RouteConfig {
     private final LoggingFilter loggingFilter;
     private final CircuitBreakerFilter circuitBreakerFilter;
 
+    private final AuthFilter authFilter;
+
     public RouteConfig(CorrelationIdFilter correlationIdFilter,
                        CachingFilter cachingFilter,
                        LoggingFilter loggingFilter,
-                       CircuitBreakerFilter circuitBreakerFilter) {
+                       CircuitBreakerFilter circuitBreakerFilter,
+                       AuthFilter authFilter) {
         this.correlationIdFilter = correlationIdFilter;
         this.cachingFilter = cachingFilter;
         this.loggingFilter = loggingFilter;
         this.circuitBreakerFilter = circuitBreakerFilter;
+        this.authFilter = authFilter;
     }
+
 
     @Bean
     public RouteLocator customRoutes(RouteLocatorBuilder builder) {
@@ -35,6 +37,7 @@ public class RouteConfig {
                                 .filters(f -> f
                                         .filter(correlationIdFilter)
                                         .filter(loggingFilter)
+                                        .filter(authFilter)
                                         .filter(circuitBreakerFilter))
                                 .uri("lb://payment-service"))
                 .route("inventory_route", r ->
@@ -42,6 +45,7 @@ public class RouteConfig {
                                 .filters(f -> f
                                         .filter(correlationIdFilter)
                                         .filter(loggingFilter)
+                                        .filter(authFilter)
                                         .filter(circuitBreakerFilter))
                                 .uri("lb://inventory-service"))
                 .route("product_route", r ->
@@ -49,6 +53,7 @@ public class RouteConfig {
                                 .filters(f -> f
                                         .filter(correlationIdFilter)
                                         .filter(loggingFilter)
+                                        .filter(authFilter)
                                         .filter(circuitBreakerFilter)
                                         .filter(cachingFilter))
                                 .uri("lb://product-service"))
@@ -57,6 +62,7 @@ public class RouteConfig {
                                 .filters(f -> f
                                         .filter(correlationIdFilter)
                                         .filter(loggingFilter)
+                                        .filter(authFilter)
                                         .filter(circuitBreakerFilter))
                                 .uri("lb://order-service"))
                 .build();

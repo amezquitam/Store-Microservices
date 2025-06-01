@@ -26,8 +26,10 @@ public class SecurityConfig {
                         .pathMatchers("/actuator/**").permitAll()
                         .pathMatchers("/eureka/**").permitAll()
                         .pathMatchers("/auth/**").permitAll()
-                        .pathMatchers(HttpMethod.GET, "/api/**").hasAnyRole("USER", "ADMIN")
-                        .pathMatchers(HttpMethod.POST, "/api/**").hasAnyRole("USER", "ADMIN")
+                        // Acceso solo para USER y ADMIN
+                        .pathMatchers("/api/orders/**", "/api/payments/**").hasAnyRole("USER", "ADMIN")
+                        // Acceso solo para ADMIN y SUPERVISOR
+                        .pathMatchers("/api/inventories/**", "/api/products/**").hasAnyRole("ADMIN", "SUPERVISOR")
                         .pathMatchers(HttpMethod.PUT, "/api/**").hasRole("ADMIN")
                         .pathMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN")
                         .anyExchange().authenticated()

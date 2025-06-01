@@ -2,6 +2,8 @@ package com.example.gateway.controller;
 
 import java.util.Map;
 
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.MediaType;
@@ -14,6 +16,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import reactor.core.publisher.Mono;
 
+@Slf4j
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -44,18 +47,21 @@ public class AuthController {
                         "&password=" + request.getPassword())
                 .retrieve()
                 .bodyToMono(new ParameterizedTypeReference<Map<String, Object>>() {})
-                .map(response -> ResponseEntity.ok(response));
+                .doOnNext(response -> log.info("🔓 Login exitoso para usuario '{}'", request.getUsername()))
+                .map(ResponseEntity::ok)
+                .onErrorResume(e -> {
+                    log.warn("❌ Fallo de login para '{}': {}", request.getUsername(), e.getMessage());
+                    return Mono.just(ResponseEntity
+                            .status(401)
+                            .body(Map.of("error", "Unauthorized")));
+                });
     }
 
+
+    @Getter
     public static class LoginRequest {
         private String username;
         private String password;
 
-        public String getUsername() {
-            return username;
-        }
-        public String getPassword() {
-            return password;
-        }
     }
 }

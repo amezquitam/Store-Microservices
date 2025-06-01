@@ -58,6 +58,7 @@ spring:
           uri: lb://payment-service
           predicates:
             - Path=/api/payments/**
+
   data:
     redis:
       host: redis-cache
@@ -114,6 +115,10 @@ eureka:
     prefer-ip-address: true
 
 management:
+  metrics:
+    enable:
+      http.client.requests: false
+      http.client.requests.active: false
   endpoint:
     prometheus:
       access: unrestricted
