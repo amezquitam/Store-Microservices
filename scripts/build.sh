@@ -5,10 +5,10 @@ build_service() {
   local service_dir=$1
   echo "==============================="
   echo "Compilando $service_dir..."
-  cd "$service_dir" || exit 1
-  mvn package -DskipTests
-  cd ..
-  docker-compose -f docker-compose.light.yml up -d --build "$service_dir"
+  (
+    cd "$service_dir" || exit 1
+    mvn package -DskipTests
+  )
 }
 
 # Verifica si se proporcionó un argumento
@@ -23,12 +23,16 @@ service=$(echo "$1" | tr '[:upper:]' '[:lower:]')
 
 # Compilar todos
 if [ "$service" = "all" ]; then
-  build_service gateway
-  build_service inventory-service
-  build_service order-service
-  build_service product-service
-  build_service payment-service
-  build_service eureka-server
+  build_service gateway &
+  build_service inventory-service &
+  build_service order-service &
+  build_service product-service &
+  build_service payment-service &
+  build_service eureka-server &
+
+  # Esperar a que todos los procesos terminen
+  wait
+  echo "✅ Todos los servicios compilados."
   exit 0
 fi
 

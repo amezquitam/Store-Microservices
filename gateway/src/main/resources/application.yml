@@ -136,3 +136,4 @@ management:
 
 management.endpoint.gateway.access: unrestricted
 management.endpoint.health.show-details: "ALWAYS"
+management.prometheus.metrics.export.enabled: true

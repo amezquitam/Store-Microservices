@@ -14,15 +14,14 @@ public class SecurityConfig {
     @Bean
     public SecurityWebFilterChain filterChain(ServerHttpSecurity http) {
         http
-                .csrf(ServerHttpSecurity.CsrfSpec::disable)
-                .authorizeExchange(exchange -> exchange
-                        .pathMatchers("/actuator/prometheus").permitAll() // <- PERMITIR EL ENDPOINT DE METRICAS
-                        .anyExchange().authenticated()
-                )
-                .oauth2ResourceServer(oauth2 -> oauth2
-                        .jwt(Customizer.withDefaults())
-                );
-
+            .csrf(ServerHttpSecurity.CsrfSpec::disable)
+            .authorizeExchange(exchange -> exchange
+                .pathMatchers("/actuator/**").permitAll()
+                .anyExchange().authenticated()
+            )
+            .oauth2ResourceServer(oauth2 -> oauth2
+                .jwt(Customizer.withDefaults())
+            );
         return http.build();
     }
 }
