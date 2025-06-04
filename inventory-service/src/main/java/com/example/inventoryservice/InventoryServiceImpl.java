@@ -56,4 +56,12 @@ public class InventoryServiceImpl implements InventoryService {
 
         return inventoryRepository.save(inventory);
     }
+
+    @Override
+    public void deleteInventoryById(UUID inventoryId) {
+        if (!inventoryRepository.existsById(inventoryId)) {
+            throw new IllegalArgumentException("Inventory with ID " + inventoryId + " not found");
+        }
+        inventoryRepository.deleteById(inventoryId);
+    }
 }

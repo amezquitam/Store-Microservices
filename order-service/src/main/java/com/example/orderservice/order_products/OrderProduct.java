@@ -1,6 +1,7 @@
 package com.example.orderservice.order_products;
 
 import com.example.orderservice.order.Order;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
@@ -19,8 +20,8 @@ import java.util.UUID;
 public class OrderProduct {
     @Id
     private UUID id;
-    @ManyToOne
-    private Order order;
     private UUID productId;
     private Long quantity;
+    @ManyToOne
+    private Order order;
 }

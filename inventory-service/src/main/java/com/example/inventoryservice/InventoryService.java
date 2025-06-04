@@ -14,4 +14,5 @@ public interface InventoryService {
     InventoryEntity createInventory(InventoryEntity inventory);
 
     InventoryEntity updateInventory(InventoryEntity inventory);
+    void deleteInventoryById(UUID inventoryId);
 }

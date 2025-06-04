@@ -101,7 +101,7 @@ class OrderRepositoryTest {
     @Test
     void givenOrderEntity_whenUpdated_thenChangesArePersisted() {
         // given
-        OrderProduct orderProduct = new OrderProduct(orderEntity.getId(), orderEntity, UUID.randomUUID(), 6L);
+        OrderProduct orderProduct = new OrderProduct(orderEntity.getId(), UUID.randomUUID(), 6L, orderEntity);
         orderProduct = orderProductRepository.save(orderProduct);
         
         // when
