@@ -1,8 +1,10 @@
 package com.example.orderservice.order;
 
 import com.example.orderservice.dto.OrderDTO;
+import com.example.orderservice.dto.OrderProductDTO;
 import com.example.orderservice.order_products.OrderProduct;
 
+import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -10,11 +12,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class OrderServiceImpl implements OrderService {
 
@@ -49,9 +53,9 @@ public class OrderServiceImpl implements OrderService {
         Order orderEntity = mapToEntity(orderDTO);
 
         return Flux.fromIterable(orderDTO.orderProducts())
-            .flatMap((OrderProduct product) -> {
+            .flatMap((OrderProductDTO product) -> {
                 return webClient.patch()
-                    .uri(product.getId() + "/decrement")
+                    .uri(product.productId() + "/decrement?amount=" + product.quantity())
                     .header(HttpHeaders.AUTHORIZATION, token)
                     .retrieve()
                     .bodyToMono(String.class);
@@ -76,21 +80,36 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private OrderDTO mapToDTO(Order orderEntity) {
-        return new OrderDTO(orderEntity.getId(), orderEntity.getTimestamp(), orderEntity.getOrderProducts());
+        List<OrderProductDTO> productDTOs = orderEntity.getOrderProducts().stream()
+                .map(op -> new OrderProductDTO(orderEntity.getId(), op.getProductId(), op.getQuantity()))
+                .collect(Collectors.toList());
+
+        return new OrderDTO(orderEntity.getId(), orderEntity.getTimestamp(), productDTOs);
     }
 
+
     private Order mapToEntity(OrderDTO orderDTO) {
-        return new Order(
-                orderDTO.id(),
-                orderDTO.orderDate(),
-                orderDTO.orderProducts()
-        );
+        Order order = new Order();
+        order.setTimestamp(orderDTO.orderDate() != null ? orderDTO.orderDate() : LocalDateTime.now());
+
+        List<OrderProduct> products = orderDTO.orderProducts().stream().map(p -> {
+            OrderProduct op = new OrderProduct();
+            op.setId(UUID.randomUUID()); // Generas el ID
+            op.setProductId(p.productId());
+            op.setQuantity(p.quantity());
+            op.setOrder(order); // Muy importante para establecer la relación bidireccional
+            return op;
+        }).collect(Collectors.toList());
+
+        order.setOrderProducts(products);
+        return order;
     }
+
 
     @Override
     public void setToken(String token) {
         this.token = token;
     }
 
-    
+
 }

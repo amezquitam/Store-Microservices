@@ -73,4 +73,9 @@ public class InventoryController {
             }
         });
     }
+
+    @DeleteMapping("/{inventoryId}")
+    public Mono<Void> deleteInventoryById(@PathVariable UUID inventoryId) {
+        return Mono.fromRunnable(() -> inventoryService.deleteInventoryById(inventoryId));
+    }
 }

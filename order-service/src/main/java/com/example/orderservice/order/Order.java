@@ -1,6 +1,7 @@
 package com.example.orderservice.order;
 
 import com.example.orderservice.order_products.OrderProduct;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -22,11 +23,11 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @NotNull
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime timestamp;
-
-    @OneToMany
+    private LocalDateTime timestamp = LocalDateTime.now();
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderProduct> orderProducts;
 
+    public Order(UUID uuid) {
+    }
 }
