@@ -7,7 +7,7 @@ build_service() {
   echo "Compilando $service_dir..."
   (
     cd "$service_dir" || exit 1
-    mvn package -DskipTests
+    ./mvnw package -DskipTests
   )
 }
 
