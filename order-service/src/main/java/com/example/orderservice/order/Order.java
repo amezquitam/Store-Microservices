@@ -25,7 +25,7 @@ public class Order {
 
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime timestamp = LocalDateTime.now();
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<OrderProduct> orderProducts;
 
     public Order(UUID uuid) {
