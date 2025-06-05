@@ -264,6 +264,15 @@ services:
     volumes:
       - loki_data:/loki
     restart: unless-stopped
+  k6:
+    image: grafana/k6
+    container_name: k6-load-test
+    volumes:
+      - ./load-tests:/scripts
+    working_dir: /scripts
+    entrypoint: [ "k6", "run", "test.js" ]
+    networks:
+      - eureka-network
 
 
 volumes:
